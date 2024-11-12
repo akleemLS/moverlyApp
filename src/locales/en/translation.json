@@ -1,0 +1,9 @@
+{
+  "welcome": "Welcome tddh",
+  "home": {
+    "title": "Home",
+    "message": "This is the home screen"
+  },
+  "customText": "This is custom text",
+  "changeLanguage": "Change to German"
+}

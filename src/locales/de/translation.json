@@ -1,0 +1,9 @@
+{
+  "welcome": "Willkommenygu",
+  "home": {
+    "title": "Startseite",
+    "message": "Dies ist der Startbildschirm"
+  },
+  "customText": "Dies ist ein benutzerdefinierter Text",
+  "changeLanguage": "Auf Englisch wechseln"
+}
