@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/Input'
 import Color from '../../constant/Color'
 import CustomImage from '../../constant/Images'
+import CustomButton from '../../components/CustomButton'
 
 
 const Login = () => {
@@ -23,11 +24,12 @@ const Login = () => {
             <Input placeholder={'Enter your Email'} />
             <Input placeholder={'Enter your Password'} />
 
+
+            <TouchableOpacity>
             <CustomeText title={'Forgot Passowrd ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
+            </TouchableOpacity>
             <View style={{ alignItems: 'center', marginBottom: 30, paddingTop: 20 }}>
-                <TouchableOpacity onPress={()=>loginMethod()} style={styles.buttonView}>
-                    <CustomeText title={'Login'} style={styles.button} />
-                </TouchableOpacity>
+                <CustomButton title='Login' onPress={loginMethod} />
             </View>
         </View>
     )

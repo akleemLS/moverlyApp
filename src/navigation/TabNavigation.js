@@ -9,11 +9,37 @@ import Lead from '../screens/leads/Lead';
 import Product from '../screens/products/product';
 import Profile from '../screens/profiles/Profile';
 import Colors from '../constant/Color';
-
+import List from '../screens/list/List';
 
 const Tab = createBottomTabNavigator();
 
-const CustomTabBarButton = ({ children, onPress }) => (
+// const CustomTabBarButton = ({ children, onPress,focused }) => (
+//   <TouchableOpacity
+//     // activeOpacity={.99}
+//     style={{
+//       top: -20,
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       ...styles.shadow,
+//     }}
+//     onPress={onPress}
+//   >
+//     <View
+//       style={{
+//         width: 60,
+//         height: 60,
+//         borderRadius: 30,
+//         backgroundColor: focused ? Colors.primaryColor : '#748c94',
+//         // backgroundColor: Colors.primaryColor,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//       }}
+//     >
+//       {children}
+//     </View>
+//   </TouchableOpacity>
+// );
+const CustomTabBarButton = ({ children, onPress, focused }) => (
   <TouchableOpacity
     style={{
       top: -20,
@@ -28,7 +54,7 @@ const CustomTabBarButton = ({ children, onPress }) => (
         width: 60,
         height: 60,
         borderRadius: 30,
-        backgroundColor: Colors.primaryColor,
+        backgroundColor: focused ? Colors.primaryColor : '#748c94',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -38,45 +64,69 @@ const CustomTabBarButton = ({ children, onPress }) => (
   </TouchableOpacity>
 );
 
+
 const TabNavigation = () => {
   return (
+    // <Tab.Navigator
+    //   screenOptions={{
+    //     tabBarShowLabel: false,
+    //     tabBarStyle: {
+    //       position: 'absolute',
+    //       bottom: 2,
+    //       left: 20,
+    //       right: 20,
+    //       elevation: 0,
+    //       backgroundColor: '#ffffff',
+    //       borderRadius: 15,
+    //       height: 70,
+    //       ...styles.shadow,
+    //     },
+    //     tabBarIconStyle: {
+    //       justifyContent: 'center',
+    //       height: 50,
+    //     },
+    //   }}
+    // >
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
-        
-          position: 'absolute',
-          bottom: 2,
+          position: 'relative',
+          bottom: 0,
           left: 20,
           right: 20,
           elevation: 0,
           backgroundColor: '#ffffff',
-          borderRadius: 15,
+          // backgroundColor:'red',
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
           height: 70,
           ...styles.shadow,
         },
         tabBarIconStyle: {
-           
-            justifyContent: 'center', // Center icons vertically
-            height:50    // Center icons horizontally
-          },
+          justifyContent: 'center',
+          height: 50,
+        },
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Dashboard"
+        component={Dashboard}
+
         options={{
+
           tabBarIcon: ({ focused }) => (
-            <FontAwesome name="home" size={30} color={focused ? '#696e6f' : '#748c94'} />
+            <FontAwesome name="home" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
           ),
         }}
       />
       <Tab.Screen
-        name="Dashboard"
-        component={Dashboard}
+        name="List"
+        component={List}
         options={{
           tabBarIcon: ({ focused }) => (
-            <FontAwesome name="list" size={30} color={focused ? '#e32f45' : '#748c94'} />
+            <FontAwesome name="list" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
           ),
         }}
       />
@@ -85,9 +135,9 @@ const TabNavigation = () => {
         component={Lead}
         options={{
           tabBarIcon: ({ focused }) => (
-            <FontAwesome name="plus" size={26} color="#fff" />
+            <FontAwesome name="plus" size={26} color={focused ? '#fff' : '#fff'} />
           ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          tabBarButton: (props) => <CustomTabBarButton {...props} focused={props.accessibilityState.selected} />,
         }}
       />
       <Tab.Screen
@@ -95,7 +145,7 @@ const TabNavigation = () => {
         component={Product}
         options={{
           tabBarIcon: ({ focused }) => (
-            <FontAwesome name="calendar" size={30} color={focused ? '#e32f45' : '#748c94'} />
+            <FontAwesome name="calendar" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
           ),
         }}
       />
@@ -104,7 +154,7 @@ const TabNavigation = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
-            <FontAwesome name="user" size={30} color={focused ? '#e32f45' : '#748c94'} />
+            <FontAwesome name="user" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
           ),
         }}
       />
@@ -116,8 +166,7 @@ export default TabNavigation;
 
 const styles = StyleSheet.create({
   shadow: {
-    // shadowColor: '#7F5DF0',
-        shadowColor:Colors.primaryColor,
+    shadowColor: Colors.primaryColor,
     shadowOffset: {
       width: 0,
       height: 5,
