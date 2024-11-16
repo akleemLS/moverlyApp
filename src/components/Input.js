@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import React from 'react'
 import CustomeText from './CustomeText'
 
-const Input = ({ onChangeText, placeholder, value, title }) => {
+const Input = ({ onChangeText, placeholder, value, title ,style}) => {
     return (
         <View style={styles.container}>
             {title && 
@@ -15,7 +15,7 @@ const Input = ({ onChangeText, placeholder, value, title }) => {
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 value={value}
-                style={styles.inputText}
+                style={[styles.inputText,style]}
                 placeholderTextColor="#888" // Change this for custom placeholder color
             />
         </View>

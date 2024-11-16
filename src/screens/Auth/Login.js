@@ -4,8 +4,8 @@ import CustomeText from '../../components/CustomeText'
 import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/Input'
 import Color from '../../constant/Color'
-import CustomImage from '../../constant/Images'
 import CustomButton from '../../components/CustomButton'
+import ImageUrls from '../../constant/Images'
 
 
 const Login = () => {
@@ -16,7 +16,7 @@ const Login = () => {
     return (
         <View style={styles.container}>
             <View style={styles.logoView}>
-                <Image source={CustomImage.logo} resizeMode="contain" style={styles.logo} />
+                <Image source={ImageUrls.logo} resizeMode="contain" style={styles.logo} />
             </View>
             <View style={styles.welcomHeading}>
                 <CustomeText title={'Welcome!'} style={styles.headingText} />

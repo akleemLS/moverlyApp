@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Styles from '../../constant/CustomStyle'
+import Input from '../../components/Input'
 
 const Lead = () => {
   return (
-    <View>
-      <Text>Lead</Text>
+    <View style={Styles.container}>
+      {/* <Input placeholder={'Leads'} /> */}
     </View>
   )
 }

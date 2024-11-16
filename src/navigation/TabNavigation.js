@@ -13,32 +13,6 @@ import List from '../screens/list/List';
 
 const Tab = createBottomTabNavigator();
 
-// const CustomTabBarButton = ({ children, onPress,focused }) => (
-//   <TouchableOpacity
-//     // activeOpacity={.99}
-//     style={{
-//       top: -20,
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       ...styles.shadow,
-//     }}
-//     onPress={onPress}
-//   >
-//     <View
-//       style={{
-//         width: 60,
-//         height: 60,
-//         borderRadius: 30,
-//         backgroundColor: focused ? Colors.primaryColor : '#748c94',
-//         // backgroundColor: Colors.primaryColor,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//       }}
-//     >
-//       {children}
-//     </View>
-//   </TouchableOpacity>
-// );
 const CustomTabBarButton = ({ children, onPress, focused }) => (
   <TouchableOpacity
     style={{
@@ -67,26 +41,6 @@ const CustomTabBarButton = ({ children, onPress, focused }) => (
 
 const TabNavigation = () => {
   return (
-    // <Tab.Navigator
-    //   screenOptions={{
-    //     tabBarShowLabel: false,
-    //     tabBarStyle: {
-    //       position: 'absolute',
-    //       bottom: 2,
-    //       left: 20,
-    //       right: 20,
-    //       elevation: 0,
-    //       backgroundColor: '#ffffff',
-    //       borderRadius: 15,
-    //       height: 70,
-    //       ...styles.shadow,
-    //     },
-    //     tabBarIconStyle: {
-    //       justifyContent: 'center',
-    //       height: 50,
-    //     },
-    //   }}
-    // >
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
@@ -128,6 +82,7 @@ const TabNavigation = () => {
           tabBarIcon: ({ focused }) => (
             <FontAwesome name="list" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
           ),
+          headerShown: false, 
         }}
       />
       <Tab.Screen
@@ -154,7 +109,7 @@ const TabNavigation = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
-            <FontAwesome name="user" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
+            <FontAwesome name="user-o" size={30} color={focused ? Colors.primaryColor : '#748c94'} />
           ),
         }}
       />

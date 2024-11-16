@@ -1,23 +1,21 @@
-import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React, { useState } from 'react'
-import CustomImage from '../../constant/Images'
 import CustomeText from '../../components/CustomeText'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../constant/Color';
 import LineChartComponent from '../../components/LineChartComponent';
-import { matrixTransform } from 'react-native-svg/lib/typescript/elements/Shape';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import ImageUrls from '../../constant/Images';
 
 const Dashboard = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const [serviceData, setServiceData] = useState([
-    { name: 'Leads', image: 'url' },
-    { name: 'Estimates', image: 'url' },
-    { name: 'Orders', image: 'url' },
-    { name: 'Services', image: 'url' },
-    { name: 'Products', image: 'url' },
-    { name: 'Moving Material', image: 'url' },
+    { name: 'Leads', image: ImageUrls.leads},
+    { name: 'Estimates', image: ImageUrls.estimate},
+    { name: 'Orders', image: ImageUrls.order},
+    { name: 'Services', image: ImageUrls.service},
+    { name: 'Products', image: ImageUrls.product},
+    { name: 'Moving Material', image: ImageUrls.moving},
     // { name: 'Services', image: 'url' },
     // { name: 'Products', image: 'url' },
     // { name: 'Moving Material', image: 'url' },
@@ -45,7 +43,7 @@ const Dashboard = () => {
             return (
               <View key={index} style={styles.box}>
                 <View style={{ width: '40%', alignItems: 'center', justifyContent: 'center' }}>
-                  <FontAwesome name="user" size={55} color={Colors.white} />
+                  <FontAwesome name="user-o" size={55} color={Colors.white} />
                 </View>
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={[styles.titleText, { alignSelf: 'flex-start' }]}>{item.number}</Text>
@@ -76,7 +74,7 @@ const Dashboard = () => {
               return (
                 <View key={ind} style={styles.box1}>
                   <View style={{ height: '60%', width: '100%', alignItems: 'center', }}>
-                    <FontAwesome name="user" size={50} color={Colors.primaryColor} />
+                   <Image source={item.image} style={{width:'100%',height:'100%'}} resizeMode={'contain'}  />
                   </View>
                   <View style={{}}>
                     <CustomeText
