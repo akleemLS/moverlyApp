@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "523730729171",
+    "project_id": "moverly-c3d39",
+    "storage_bucket": "moverly-c3d39.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523730729171:android:898c46785e653187b47c26",
+        "android_client_info": {
+          "package_name": "com.movingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP_81Aob7ofmASZqKwCX_aU8E1kvb5mK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

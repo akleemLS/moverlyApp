@@ -1,6 +1,6 @@
 // TabNavigation.js
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Home from '../screens/Home';
@@ -12,6 +12,7 @@ import Colors from '../constant/Color';
 import List from '../screens/list/List';
 
 const Tab = createBottomTabNavigator();
+
 
 const CustomTabBarButton = ({ children, onPress, focused }) => (
   <TouchableOpacity
@@ -40,6 +41,7 @@ const CustomTabBarButton = ({ children, onPress, focused }) => (
 
 
 const TabNavigation = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   return (
     <Tab.Navigator
       screenOptions={{
@@ -51,7 +53,7 @@ const TabNavigation = () => {
           left: 20,
           right: 20,
           elevation: 0,
-          backgroundColor: '#ffffff',
+          backgroundColor: !isDarkMode?'#FFFFF':Colors.darkBackground,
           // backgroundColor:'red',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,

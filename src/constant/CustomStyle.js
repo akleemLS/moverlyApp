@@ -11,14 +11,20 @@ const createStyles = (isDarkMode) => {
         container: {
             backgroundColor: isDarkMode ? Colors.darker : '#F5F5F5',
             flex: 1,
-            padding: 16,
+            // padding: 16,
         },
-        backgroundColor:{
+        backgroundColor: {
             backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+        },
+        boxBackgroundStyle: {
+            backgroundColor: isDarkMode ? Colors.darkBackground : Colors.lightBackground,
         },
         text: {
             color: isDarkMode ? Colors.lighter : Colors.darker,
             fontSize: 16,
+        },
+        color: {
+            color: isDarkMode ? Colors.darker : Colors.lighter,
         },
         button: {
             backgroundColor: isDarkMode ? Colors.lighter : Colors.darker,
