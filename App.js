@@ -6,6 +6,7 @@ import CustomeText from './src/components/CustomeText';
 import { changeLanguage, loadLanguage } from './src/utils/i18n';
 import Navigation from './src/navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen';
+import notificationService from './src/screens/configration/NotificationService';
 
 const App = () => {
   const { t } = useTranslation();
@@ -20,7 +21,20 @@ const App = () => {
   //   SplashScreen?.hide()
   // },[])
 
-  
+  useEffect(() => {
+    const initializeNotifications = async () => {
+      const hasPermission = await notificationService.requestPermission();
+      if (hasPermission) {
+        notificationService.createNotificationChannels();
+        const fcmToken = await notificationService.getFCMToken(); // Retrieve the token
+        console.log('Token assigned to variable:', fcmToken); 
+        notificationService.listenForNotifications();
+      }
+    };
+
+    initializeNotifications();
+  }, []);
+
 
   return (
     <SafeAreaView style={backgroundStyle}>

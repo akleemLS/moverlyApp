@@ -49,11 +49,10 @@ const Dashboard = () => {
                 <View style={{ width: '40%', alignItems: 'center', justifyContent: 'center', }}>
                   <FontAwesome name="user-o" size={55} color={Colors.white} />
                 </View>
-                <View style={{ alignItems: 'center', justifyContent: 'center',width:'60%' }}>
-                  <CustomeText title={item.number}  style={{textAlign:'left',alignSelf:'start',paddingBottom:5}}/>
-                  <CustomeText title={item.name} numberOfLines={1}/>
-                  {/* <Text style={[styles.titleText, { alignSelf: 'flex-start' }]}>48</Text> */}
-                  {/* <CustomeText title={item.name} style={styles.titleText} /> */}
+                <View style={{ alignItems: 'flex-start', justifyContent: 'center',width:'60%' }}>
+                  <CustomeText title={item.number}  style={[styles.text,{color:'white',paddingBottom:5}]}/>
+                  <CustomeText title={item.name} numberOfLines={1} style={[styles.text,{color:'white'}]} />
+                 
                 </View>
               </View>)
           })}
@@ -106,6 +105,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
   },
+  text:{
+    fontWeight:'700'
+  },
   chartContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryColor,
     flexDirection: 'row',
     height: 90,
-    width: '44%',
+    width: '43%',
     margin: 10,
     borderRadius: 10,
     // borderWidth:1,
