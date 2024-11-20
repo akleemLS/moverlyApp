@@ -21,10 +21,7 @@ const Dashboard = () => {
     // { name: 'Products', image: 'url' },
     // { name: 'Moving Material', image: 'url' },
   ])
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1,
-  };
+
 
   const boxArr = [
     { number: '48', name: 'Kunden' },

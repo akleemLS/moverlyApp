@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 import React, { useState } from 'react'
 import Input from '../../components/Input'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -7,18 +7,75 @@ import { useNavigation } from '@react-navigation/native';
 import CustomeText from '../../components/CustomeText';
 import createStyles from '../../constant/CustomStyle';
 import Colors from '../../constant/Color';
+import LeadBoxItem from '../../components/LeadBoxItem';
+
 
 const List = () => {
   const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
-  const [inputValue, setInputValue] = useState('')
-  const handleSearching = (item) => {
-    console.log('item', item)
-    setInputValue(item)
-  }
+  const [searchQuery, setSearchQuery] = useState('');
+  const [leadsData, setLeadsData] = useState([
+    {
+      name: 'wfd Dcdoe',
+      email: 'email@yopmail.com',
+      address: 'Berlin list and sell',
+      address1: 'fioejfoeifjoeijfioej',
+      status: 'Pending',
+      date: '11-12-2024',
+      date1: '12-12-2024',
+    },
+    {
+      name: 'fef Dfefoe',
+      email: 'email@yopmail.com',
+      address: 'Berlin list and sell',
+      address1: 'Berlin',
+      status: 'Pending',
+      date: '11-12-2024',
+      date1: '12-12-2024',
+    },
+    {
+      name: 'efe Dffioudhfoe',
+      email: 'email@yopmail.com',
+      address: 'Berlin list and sell',
+      address1: 'Berlin',
+      status: 'Waiting Customer Response',
+      date: '11-12-2024',
+      date1: '12-12-2024',
+    },
+    {
+      name: 'Ja3refne Doe',
+      email: 'email@yfiil.com',
+      address: 'Berlin list and sell',
+      address1: 'Berlin',
+      status: 'Pending',
+      date: '11-12-2024',
+      date1: '12-12-2024',
+    },
+    {
+      name: '2anef Doe',
+      email: 'email@yopmail.com',
+      address: 'Berlin list and sell',
+      address1: 'Bereoifjieojfeojlin',
+      status: 'Active',
+      date: '11-12-2024',
+      date1: '12-12-2024',
+    },
+    // Add more dummy data as needed
+  ]);
 
-  let arr = [1, 2, 3, 4, 4, 5, 7]
+  const handleSearch = (text) => {
+    setSearchQuery(text);
+  };
+
+  const filteredLeads = leadsData.filter((lead) =>
+    lead.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handlePress = (item) => {
+    // Navigate to the EditLead screen and pass the item data
+    // navigation.navigate('EditLead', { leadData: item });
+  };
 
   return (
     <View style={Styles.container}>
@@ -26,67 +83,29 @@ const List = () => {
         <TouchableOpacity style={{ padding: 2, }} onPress={() => navigation.goBack()}>
           <FontAwesome name="arrow-left" size={20} color={isDarkMode ? "white" : 'black'} />
         </TouchableOpacity>
-        <Input placeholder={'Leads'}
+        <Input
+          placeholder="Search Leads"
           style={{ borderRadius: 30 }}
-          value={inputValue}
-          onChangeText={handleSearching}
+          value={searchQuery}
+          onChangeText={handleSearch}
         />
+
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} >
-        {/* box screen */}
-        {arr.map((item,index) => {
-          return (
-            <View 
-            key={index} 
-            style={StyleSheet.flatten([
-              styles.boxView, 
-              { backgroundColor: isDarkMode ? Colors.darkBackground : 'white' }
-            ])}
-          >
-              <View style={styles.boxTopSection}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
-                  <View style={{ margin: 10 }}>
-                    <CustomeText title={'Jone due'} style={[styles.text, { fontSize: 22 }]} />
-                    <CustomeText title={'Emails@gmail.com'} style={[styles.text, { color: Colors.textColor }]} />
-                  </View>
-                  <View style={styles.paddingButton}>
-                    <CustomeText title={'Pending'} style={[styles.text, { fontSize: 18, color: 'orange', fontWeight: 'bold', textAlign: 'center' }]} />
-                  </View>
-                </View>
-
-                {/* //bottom section */}
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
-                  <View style={{ margin: 10, }}>
-                    <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
-                      <FontAwesome name="calendar" size={20} color={Colors.primaryColor} />
-                      <CustomeText title={'14-11-24'} style={{ paddingLeft: 10 }} />
-                    </View>
-
-                    <View style={{ paddingTop: 20, flexDirection: 'row', }}>
-                      <EvilIcons name="location" size={30} color={Colors.primaryColor} />
-                      <CustomeText title={'Berlin b - block'} style={[styles.text, { paddingLeft: 10 }]} />
-                    </View>
-                  </View>
-
-                  <View style={{ margin: 10 }}>
-                    <View style={{ flexDirection: 'row' }}>
-                      {/* <FontAwesome name="calendar" size={20} /> */}
-                      <CustomeText title={'2-11-2023'} style={{ paddingLeft: 10 }} />
-                    </View>
-                    <View style={{ paddingTop: 20, flexDirection: 'row', }}>
-                      {/* <FontAwesome name="calendar" size={20} /> */}
-                      <CustomeText title={'Address'} style={[styles.text, { paddingLeft: 10 }]} />
-                    </View>
-
-                  </View>
-                </View>
-              </View>
-            </View>
-          )
-        })}
-
-      </ScrollView>
+     
+      {filteredLeads.length > 0 ? (
+        <FlatList
+          data={filteredLeads}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <LeadBoxItem item={item} onPress={() => handlePress(item)} />}
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+        />
+      ) : (
+        <View style={styles.noDataContainer}>
+          <Text style={styles.noDataText}>No data available</Text>
+        </View>
+      )}
 
 
     </View>
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     shadowOpacity: .2,
     shadowColor: Colors.primaryColor,
-  
+
   },
   boxTopSection: {
     height: '45%',
