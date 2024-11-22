@@ -3,9 +3,9 @@ import React from 'react'
 import CustomeText from '../../components/CustomeText'
 import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/Input'
-import Color from '../../constant/Color'
 import CustomButton from '../../components/CustomButton'
 import ImageUrls from '../../constant/Images'
+import Color from '../../constant/Color'
 
 
 const Login = () => {
@@ -13,6 +13,7 @@ const Login = () => {
     const loginMethod =()=>{
         navigation.replace('Home')
     }
+    
     return (
         <View style={styles.container}>
             <View style={styles.logoView}>

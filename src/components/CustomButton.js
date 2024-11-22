@@ -1,7 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import Colors from '../constant/Color'
+
 import CustomeText from './CustomeText'
+import Color from '../constant/Color'
 
 const CustomButton = ({style,title='button',onPress}) => {
     return (
@@ -18,11 +19,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 15,
         width: '90%',
-        backgroundColor: Colors.primaryColor
+        backgroundColor: Color.primaryColor
     },
     button: {
         fontSize: 16,
         padding: 14,
-        color: Colors.white,
+        color: Color.white,
     }
 })

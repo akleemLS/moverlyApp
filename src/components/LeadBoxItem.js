@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, useColorScheme } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from '../constant/Color';
+
 import CustomeText from './CustomeText';
+import Color from '../constant/Color';
 
 
 const statusColors = {
-  Active: { badgeColor: '#90EE90', textColor: '#228B22' },
+  Active: { badgeColor: '#90EE90', textColor: '#228B222' },
   'Waiting Customer Response': { badgeColor: '#ADD8E6', textColor: '#007BFF' },
   default: { badgeColor: '#D3D3D333', textColor: 'orange' },
 };
@@ -30,7 +31,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
       onPress={() => onPress(item)}
       style={[
         styles.container,
-        { backgroundColor: isDarkMode ? Colors.darkBackground : 'white' },
+        { backgroundColor: isDarkMode ? Color.darkBackground : 'white' },
       ]}
     >
       <View style={styles.headerSection}>
@@ -68,7 +69,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
       <View style={styles.rowSpaceBetween}>
         <View style={styles.infoSection}>
           <View style={styles.rowAligned}>
-            <Ionicons name="calendar-number-outline" size={25} color={Colors.primaryColor} />
+            <Ionicons name="calendar-number-outline" size={25} color={Color.primaryColor} />
             <CustomeText
               title={item?.date}
               style={styles.dateText}
@@ -80,7 +81,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
         <View style={{ justifyContent: 'center' }}>
           <CustomeText
             title={"-"}
-            style={[{ color: Colors.textColor }]}
+            style={[{ color: Color.textColor }]}
             numberOfLines={1}
             ellipsizeMode="tail"
           />
@@ -88,7 +89,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
 
         <View style={styles.infoSection}>
           <View style={[styles.rowAligned, { justifyContent: 'flex-end' }]}>
-            <Ionicons name="calendar-number-outline" size={25} color={Colors.primaryColor} />
+            <Ionicons name="calendar-number-outline" size={25} color={Color.primaryColor} />
             <CustomeText
               title={item?.date1}
               style={styles.dateText}
@@ -100,7 +101,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
 
       </View>
       <View style={[styles.rowAligned, { marginHorizontal: 5, flex: 1 }]}>
-        <Ionicons name="location-outline" size={25} color={Colors.primaryColor} />
+        <Ionicons name="location-outline" size={25} color={Color.primaryColor} />
         <CustomeText
           title={item?.address}
           style={styles.addressText}
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     elevation: 1,
     shadowOpacity: 0.1,
-    shadowColor: Colors.primaryColor,
+    shadowColor: Color.primaryColor,
     padding: 10,
   },
   headerSection: {
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
   },
   emailText: {
     fontSize: 14,
-    color: Colors.textColor,
+    color: Color.textColor,
     marginTop: 5, // Space between email and status
   },
   statusBadge: {
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
   dateText: {
     paddingLeft: 10,
     fontSize: 14,
-    color: Colors.textColor,
+    color: Color.textColor,
     marginLeft: 5, // Space between icon and text
   },
   iconsAligned: {

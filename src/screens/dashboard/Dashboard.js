@@ -1,14 +1,16 @@
-import { Image, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 import React, { useState } from 'react'
 import CustomeText from '../../components/CustomeText'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../constant/Color';
 import LineChartComponent from '../../components/LineChartComponent';
 import ImageUrls from '../../constant/Images';
 import createStyles from '../../constant/CustomStyle';
+import { useNavigation } from '@react-navigation/native';
+import Color from '../../constant/Color';
 
 const Dashboard = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const navigation = useNavigation()
 
   const [serviceData, setServiceData] = useState([
     { name: 'Leads', image: ImageUrls.leads },
@@ -29,11 +31,30 @@ const Dashboard = () => {
     { number: '55', name: 'Anfragen' },
     { number: '37', name: 'Verkaufe' },
   ]
-  const chartData = [20, 45, 28, 80, 99, 43,74,44,22,11,11];
-  const chartLabels = ['jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',"item1",'item2','item3','item4'];
+  const chartData = [20, 45, 28, 80, 99, 43, 74, 44, 22, 11, 11];
+  const chartLabels = ['jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', "item1", 'item2', 'item3', 'item4'];
 
 
   const Styles = createStyles(isDarkMode);
+
+  const serviceNavigationMap = {
+    Leads: 'LeadServices',
+    Estimates: 'EstimateServices',
+    Orders: 'OrderServices',
+    Services: 'ServicesServices',
+    Products: 'ProductServices',
+    'Moving Material': 'MovingServices',
+  };
+  
+  const handleServiceBoxClick = (item) => {
+    console.log('item click', item);
+    const routeName = serviceNavigationMap[item.name];
+    if (routeName) {
+      navigation.navigate(routeName);
+    } else {
+      console.warn(`No route defined for ${item.name}`);
+    }
+  };
   return (
 
     <View style={Styles.container}>
@@ -44,11 +65,11 @@ const Dashboard = () => {
             return (
               <View key={index} style={styles.box}>
                 <View style={{ width: '40%', alignItems: 'center', justifyContent: 'center', }}>
-                  <FontAwesome name="user-o" size={55} color={Colors.white} />
+                  <FontAwesome name="user-o" size={55} color={Color.white} />
                 </View>
-                <View style={{ alignItems: 'center', justifyContent: 'center',width:'60%' }}>
-                  <CustomeText title={item.number}  style={{textAlign:'left',alignSelf:'start',paddingBottom:5}}/>
-                  <CustomeText title={item.name} numberOfLines={1}/>
+                <View style={{ alignItems: 'flex-start', justifyContent: 'center', width: '60%' }}>
+                  <CustomeText title={item.number} style={{ paddingBottom: 5, color: 'white', fontWeight: 'bold' }} />
+                  <CustomeText title={item.name} numberOfLines={1} style={{ color: 'white', fontWeight: 'bold' }} />
                   {/* <Text style={[styles.titleText, { alignSelf: 'flex-start' }]}>48</Text> */}
                   {/* <CustomeText title={item.name} style={styles.titleText} /> */}
                 </View>
@@ -57,8 +78,8 @@ const Dashboard = () => {
         </View>
 
         {/* //graphs UI */}
-        
-        <View style={[{paddingLeft:20,marginVertical:10,paddingTop:10}]}>
+
+        <View style={[{ paddingLeft: 20, marginVertical: 10, paddingTop: 10 }]}>
           <View style={[styles.header]}>
             <CustomeText title={'Statistic'} style={styles.title} />
           </View>
@@ -71,16 +92,16 @@ const Dashboard = () => {
         <View style={[styles.boxView,]}>
           {serviceData.map((item, ind) => {
             return (
-              <View key={ind} style={[styles.box1]}>
+              <TouchableOpacity onPress={() => handleServiceBoxClick(item)} key={ind} style={[styles.box1]}>
                 <View style={{ height: '60%', width: '100%', alignItems: 'center', }}>
                   <Image source={item.image} style={{ width: '100%', height: '100%' }} resizeMode={'contain'} />
                 </View>
                 <View style={{}}>
                   <CustomeText
                     numberOfLines={1}
-                    title={item.name} style={[{ color: Colors.textColor }]} />
+                    title={item.name} style={[{ color: Color.textColor }]} />
                 </View>
-              </View>
+              </TouchableOpacity>
             )
           })}
 
@@ -119,13 +140,13 @@ const styles = StyleSheet.create({
     rowGap: 1,
     width: '95%',
     alignSelf: 'center',
-   
+
     // borderWidth:1
 
   },
 
   box: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Color.primaryColor,
     flexDirection: 'row',
     height: 90,
     width: '44%',
@@ -140,7 +161,7 @@ const styles = StyleSheet.create({
     padding: 4
   },
   box1: {
-    backgroundColor: Colors.white,
+    backgroundColor: Color.white,
     height: '45%',
     width: '28%',
     margin: 10,
@@ -148,7 +169,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 1,
-    shadowColor: Colors.primaryColor,
+    shadowColor: Color.primaryColor,
     shadowOpacity: .1
     // borderWidth:1,
   },

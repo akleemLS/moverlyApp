@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, useColorScheme } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
-import Colors from '../constant/Color';
+import Color from '../constant/Color';
+
+
 
 const LineChartComponent = ({ data, labels }) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -13,15 +15,15 @@ const LineChartComponent = ({ data, labels }) => {
   }));
 
   const chartStyles = {
-    yAxisTextStyle: { color: isDarkMode ? Colors.white : '#555' },
-    xAxisTextStyle: { color: isDarkMode ? Colors.white : '#555' },
-    dataPointLabelStyle: { color: isDarkMode ? Colors.white : '#555' },
-    dataPointColor: isDarkMode ? Colors.primaryColor : '#ffa726',
-    color: isDarkMode ? Colors.white : Colors.primaryColor, // Line color
-    startFillColor: isDarkMode ? Colors.darker : '#fb8c00', // Gradient start color
-    endFillColor: isDarkMode ? Colors.darker : '#ffa726', // Gradient end color
-    gridLineColor: isDarkMode ? Colors.white : '#e0e0e0', // Grid line color
-    labelColor: isDarkMode ? Colors.white : '#555', // Label color
+    yAxisTextStyle: { color: isDarkMode ? Color.white : '#555' },
+    xAxisTextStyle: { color: isDarkMode ? Color.white : '#555' },
+    dataPointLabelStyle: { color: isDarkMode ? Color.white : '#555' },
+    dataPointColor: isDarkMode ? Color.primaryColor : '#ffa726',
+    color: isDarkMode ? Color.white : Color.primaryColor, // Line color
+    startFillColor: isDarkMode ? Color.darker : '#fb8c00', // Gradient start color
+    endFillColor: isDarkMode ? Color.darker : '#ffa726', // Gradient end color
+    gridLineColor: isDarkMode ? Color.white : '#e0e0e0', // Grid line color
+    labelColor: isDarkMode ? Color.white : '#555', // Label color
     
   };
 

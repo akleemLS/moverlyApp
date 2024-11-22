@@ -6,23 +6,22 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import { useNavigation } from '@react-navigation/native';
 import CustomeText from '../../components/CustomeText';
 import createStyles from '../../constant/CustomStyle';
-
 import LeadBoxItem from '../../components/LeadBoxItem';
-import Color from '../../constant/Color';
+import CustomHeader from '../../components/CustomHeader';
 
 
-const List = () => {
+const OrderServices = () => {
   const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
   const [searchQuery, setSearchQuery] = useState('');
   const [leadsData, setLeadsData] = useState([
     {
-      name: 'wfd Dcdoe',
+      name: 'wfd Dcdoefuehufieh hohef',
       email: 'email@yopmail.com',
-      address: 'Berlin list and sell',
+      address: 'Berlin list and selhfioejfhoeifjoiej fefoiejfej fneof feifhoehfeo l',
       address1: 'fioejfoeifjoeijfioej',
-      status: 'Pending',
+      status: 'Active',
       date: '11-12-2024',
       date1: '12-12-2024',
     },
@@ -31,7 +30,7 @@ const List = () => {
       email: 'email@yopmail.com',
       address: 'Berlin list and sell',
       address1: 'Berlin',
-      status: 'Pending',
+      status: 'Active',
       date: '11-12-2024',
       date1: '12-12-2024',
     },
@@ -40,7 +39,7 @@ const List = () => {
       email: 'email@yopmail.com',
       address: 'Berlin list and sell',
       address1: 'Berlin',
-      status: 'Waiting Customer Response',
+      status: 'Active',
       date: '11-12-2024',
       date1: '12-12-2024',
     },
@@ -80,20 +79,15 @@ const List = () => {
 
   return (
     <View style={Styles.container}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', margin: 15, justifyContent: 'center' }}>
-        <TouchableOpacity style={{ padding: 2, }} onPress={() => navigation.goBack()}>
-          <FontAwesome name="arrow-left" size={20} color={isDarkMode ? "white" : 'black'} />
-        </TouchableOpacity>
-        <Input
-          placeholder="Search Leads"
-          style={{ borderRadius: 30 }}
-          value={searchQuery}
-          onChangeText={handleSearch}
-        />
 
-      </View>
+      <CustomHeader
+        value={searchQuery}
+        onChangeText={handleSearch}
+        placeholder="Search Orders Here!"
+      />
 
-     
+
+
       {filteredLeads.length > 0 ? (
         <FlatList
           data={filteredLeads}
@@ -104,47 +98,23 @@ const List = () => {
         />
       ) : (
         <View style={styles.noDataContainer}>
-          <Text style={styles.noDataText}>No data available</Text>
+          <CustomeText title='No data Available' style={styles.noDataText} />
         </View>
       )}
-
-
     </View>
   )
 }
 
-export default List
+export default OrderServices;
 
 const styles = StyleSheet.create({
-  boxView: {
-    // borderWidth: 1,
-    height: 200,
-    width: '90%',
-    alignSelf: 'center',
-    borderRadius: 20,
-    marginBottom: 10,
-    elevation: 1,
-    shadowOpacity: .2,
-    shadowColor: Color.primaryColor,
-
+  noDataContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  boxTopSection: {
-    height: '45%',
-    borderBottomWidth: 2,
-    borderBottomColor: 'grey'
-  },
-  text: {
-    fontSize: 16,
-    padding: 2
-  },
-  paddingButton: {
-    margin: 10,
-    // borderWidth: 1,
-    height: 40,
-    backgroundColor: '#D3D3D333',
-    borderRadius: 20,
-    width: '30%',
-    alignItems: 'center',
-    justifyContent: 'center'
+  noDataText: {
+    fontSize: 22,
+    fontWeight: '800'
   }
 })

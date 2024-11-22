@@ -1,5 +1,5 @@
 // Color.js
-const Colors = {
+const Color = {
     primaryColor: '#666cff',
     buttonColor: '#666cff',
     headingColor: '#636579',
@@ -7,9 +7,9 @@ const Colors = {
     white: '#ffffff',
     black: '#000000',
     darkBackground: '#121212',
-    lightBackground: '#FFFFFF',
+    lightBackground: '#F5F5F5',
     // Add more colors as needed
   };
   
-  export default Colors;
+  export default Color;
   
