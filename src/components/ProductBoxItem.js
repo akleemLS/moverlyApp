@@ -13,7 +13,7 @@ const ProductBoxItem = ({ item ,onPress}) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={.5}
-      style={[styles.boxContainer, Styles.backgroundColor]}
+      style={[styles.boxContainer, Styles.boxBackgroundStyle]}
     >
       {/* Image Section */}
       <View style={styles.imageContainer}>
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOpacity: 0.1,
+    shadowRadius: .5,
+    elevation: 1,
   },
   imageContainer: {
     flex: 3,

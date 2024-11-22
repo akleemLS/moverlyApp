@@ -1,39 +1,51 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, useColorScheme, Dimensions } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Input from './Input'; // Replace with your input component if different
 import { useNavigation } from '@react-navigation/native';
+import createStyles from '../constant/CustomStyle';
+import CustomeText from './CustomeText';
+
+// Screen dimensions
+const { width, height } = Dimensions.get('window');
 
 const CustomHeader = ({
   searchQuery,
   showSearch = true,
   title = '',
   onChangeText,
-  placeholder = 'Search here'
+  placeholder = 'Search here',
 }) => {
   const colorScheme = useColorScheme(); // Detect light or dark mode
   const isDarkMode = colorScheme === 'dark';
-
-
+  const Styles = createStyles(isDarkMode);
   const navigation = useNavigation();
 
   return (
-    <View style={[styles.headerContainer, title && { backgroundColor: isDarkMode ? '#333' : '#FFF' }]}>
+    <View style={[styles.headerContainer, Styles.backgroundColor]}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Ionicons name="chevron-back-sharp" size={30} color={isDarkMode ? 'white' : 'black'} />
+        <Ionicons name="chevron-back-sharp" size={height * 0.03} color={isDarkMode ? 'white' : 'black'} />
       </TouchableOpacity>
-      
-      {showSearch ? (
-        <Input
-          placeholder={placeholder}
-          style={[styles.searchInput, { backgroundColor: isDarkMode ? '#555' : '#EEE',    color: isDarkMode ? 'white' : 'black' }]}
-          value={searchQuery}
-          onChangeText={onChangeText}
-          placeholderTextColor={isDarkMode ? '#CCC' : '#888'}
-        />
-      ) : (
-        <Text style={[styles.title, { color: isDarkMode ? 'white' : 'black' }]}>{title}</Text>
-      )}
+
+      <View style={styles.content}>
+        {showSearch ? (
+          <Input
+            placeholder={placeholder}
+            style={[
+              styles.searchInput,
+              {
+                backgroundColor: isDarkMode ? '#555' : '#EEE',
+                color: isDarkMode ? 'white' : 'black',
+              },
+            ]}
+            value={searchQuery}
+            onChangeText={onChangeText}
+            placeholderTextColor={isDarkMode ? '#CCC' : '#888'}
+          />
+        ) : (
+          <CustomeText title={title} style={[styles.title,]}/>
+        )}
+      </View>
     </View>
   );
 };
@@ -42,27 +54,26 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 15,
-    // borderWidth:1,
-    justifyContent:'center'
-    // paddingVertical: 10,
+    paddingHorizontal: width * 0.04, // Relative padding
+    height: height * 0.06, 
+    marginBottom:5
   },
   backButton: {
-    // padding: 5,
+    marginRight: width * 0.02, // Adjust spacing
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
   },
   searchInput: {
-    // flex: 1,
-    marginLeft: 5,
-    padding: 10,
-    borderRadius: 30,
-    width: '95%',
-    marginBottom:5
-
+    padding: height * 0.015, // Responsive padding
+    borderRadius: height * 0.05, // Rounded corners relative to screen height
+    width: '100%', // Full width for the search box
   },
   title: {
-    fontSize: 18,
-    marginLeft: 10,
+    fontSize: height * 0.025, // Responsive font size
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

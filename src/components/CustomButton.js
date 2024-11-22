@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     buttonView: {
         alignItems: 'center',
         borderRadius: 15,
-        width: '90%',
+        width: '100%',
         backgroundColor: Color.primaryColor
     },
     button: {

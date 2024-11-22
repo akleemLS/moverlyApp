@@ -29,7 +29,7 @@ const Login = () => {
             <TouchableOpacity>
             <CustomeText title={'Forgot Passowrd ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
             </TouchableOpacity>
-            <View style={{ alignItems: 'center', marginBottom: 30, paddingTop: 20 }}>
+            <View style={{ alignItems: 'center', marginBottom: 30, paddingTop: 20,width:'95%',alignSelf:'center' }}>
                 <CustomButton title='Login' onPress={loginMethod} />
             </View>
         </View>

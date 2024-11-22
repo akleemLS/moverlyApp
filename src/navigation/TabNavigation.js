@@ -21,6 +21,7 @@ import Calender from '../screens/calender/Calender';
 import createStyles from '../constant/CustomStyle';
 import Color from '../constant/Color';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import EditProduct from '../screens/products/EditProduct';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,6 +36,7 @@ const DashboardStack = () => (
     <Tab.Screen name="ServicesServices" component={ServicesServices} />
     <Tab.Screen name="ProductServices" component={ProductServices} />
     <Tab.Screen name="MovingServices" component={MovingScreens} />
+    <Tab.Screen name="EditProduct" component={EditProduct}/>
   </Stack.Navigator>
 );
 
