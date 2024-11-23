@@ -41,6 +41,6 @@ export default CustomeText;
 const styles = StyleSheet.create({
   defaultStyle: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '400',
   },
 });

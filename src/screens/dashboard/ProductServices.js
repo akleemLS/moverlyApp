@@ -68,7 +68,7 @@ const ProductServices = () => {
   const Width = Dimensions.get('screen').width;
 
   const hanldleProductClick = (item) => {
-    console.log('click product ', item);
+    console.log('click product===>> ', item);
 
     navigation.navigate('EditProduct', { data: item })
   }
@@ -80,7 +80,7 @@ const ProductServices = () => {
       <FlatList
         data={productData}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ProductBoxItem item={item} onPress={hanldleProductClick} />}
+        renderItem={({ item }) => <ProductBoxItem item={item} onPress={()=>hanldleProductClick(item)} />}
         contentContainerStyle={styles.listContainer}
       />
     </View>

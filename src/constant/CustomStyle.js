@@ -27,15 +27,16 @@ const createStyles = (isDarkMode) => {
             backgroundColor: isDarkMode ? Colors.darker : Color.lightBackground,
         },
         boxBackgroundStyle: {
-            backgroundColor: isDarkMode ? Color.darkBackground : Color.lightBackground,
+            backgroundColor: isDarkMode ? Color.darkBackground : 'white' ,
             // flex:1
         },
         text: {
-            color: isDarkMode ? Color.lighter : Color.darker,
+            color: isDarkMode ? Color.lighter : Colors.darker,
             fontSize: 16,
         },
         color: {
-            color: isDarkMode ? Color.darker : Color.lighter,
+            color: isDarkMode ? Color.lightBackground : Color.darkBackground,
+            fontWeight:'400'
         },
         button: {
             backgroundColor: isDarkMode ? Color.lighter : Color.darker,

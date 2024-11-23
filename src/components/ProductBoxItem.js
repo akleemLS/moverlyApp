@@ -19,8 +19,9 @@ const ProductBoxItem = ({ item ,onPress}) => {
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: item.image }}
-          style={styles.image}
+          style={[styles.image, { backgroundColor: 'transparent' }]} 
           resizeMode="cover"
+        
         />
       </View>
 
@@ -37,6 +38,7 @@ const ProductBoxItem = ({ item ,onPress}) => {
             <View style={{ width: Width / 4.5 }}>
               <CustomeText title={priceLabel?.name} numberOfLines={1} style={styles.priceText} />
             </View>
+            
             <View style={{ width: Width / 9.5, }}>
               <CustomeText numberOfLines={1} title={priceLabel?.amount} style={styles.priceText} />
             </View>
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   image: {
     width: '100%',

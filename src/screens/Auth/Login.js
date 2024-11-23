@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 import React from 'react'
 import CustomeText from '../../components/CustomeText'
 import { useNavigation } from '@react-navigation/native'
@@ -6,32 +6,40 @@ import Input from '../../components/Input'
 import CustomButton from '../../components/CustomButton'
 import ImageUrls from '../../constant/Images'
 import Color from '../../constant/Color'
+import createStyles from '../../constant/CustomStyle'
 
 
 const Login = () => {
+    const isDarkMode = useColorScheme() === 'dark';
+    const Styles = createStyles(isDarkMode);
+
     const navigation = useNavigation();
-    const loginMethod =()=>{
+    const loginMethod = () => {
         navigation.replace('Home')
     }
-    
+
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, Styles.backgroundColor]}>
             <View style={styles.logoView}>
                 <Image source={ImageUrls.logo} resizeMode="contain" style={styles.logo} />
             </View>
             <View style={styles.welcomHeading}>
                 <CustomeText title={'Welcome!'} style={styles.headingText} />
             </View>
-            <Input placeholder={'Enter your Email'} />
-            <Input placeholder={'Enter your Password'} />
-
-
-            <TouchableOpacity>
-            <CustomeText title={'Forgot Passowrd ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
-            </TouchableOpacity>
-            <View style={{ alignItems: 'center', marginBottom: 30, paddingTop: 20,width:'95%',alignSelf:'center' }}>
-                <CustomButton title='Login' onPress={loginMethod} />
+            <View style={{margin:10}}>
+                <Input placeholder={'Enter your Email'} />
+                <Input placeholder={'Enter your Password'} />
+                <TouchableOpacity>
+                    <CustomeText title={'Forgot Passowrd ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
+                </TouchableOpacity>
+                <View style={{ alignItems: 'center', marginBottom: 30, paddingTop: 20, width: '90%', alignSelf: 'center' }}>
+                    <CustomButton title='Login' onPress={loginMethod} />
+                </View>
             </View>
+
+
+
         </View>
     )
 }
@@ -42,6 +50,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        // margin:10
     },
     logoView: {
         // flex:4,
@@ -57,12 +66,12 @@ const styles = StyleSheet.create({
     },
     welcomHeading: {
         margin: 10,
-        paddingLeft: 5
+        paddingLeft: 20
     },
     headingText: {
         fontSize: 22,
         fontWeight: '900',
-        color: Color.black
+        // color: Color.black
     },
     buttonView: {
         alignItems: 'center',

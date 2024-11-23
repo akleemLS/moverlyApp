@@ -1,10 +1,13 @@
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, useColorScheme, View } from 'react-native'
 import React from 'react'
 import CustomeText from './CustomeText'
+import createStyles from '../constant/CustomStyle';
 
 const Input = ({ onChangeText, placeholder, value, title ,style,placeholderTextColor="#888"}) => {
+    const isDarkMode = useColorScheme() === 'dark';
+    const Styles = createStyles(isDarkMode);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container]}>
             {title && 
              <View style={styles.titleView}>
              <CustomeText title={title} />
@@ -15,7 +18,7 @@ const Input = ({ onChangeText, placeholder, value, title ,style,placeholderTextC
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 value={value}
-                style={[styles.inputText,style]}
+                style={[styles.inputText,Styles.boxBackgroundStyle,Styles.color]}
                 // placeholderTextColor="#888" 
                 placeholderTextColor={placeholderTextColor}
                 // Change this for custom placeholder color

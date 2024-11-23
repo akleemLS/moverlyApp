@@ -1,8 +1,6 @@
 import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 import React, { useState } from 'react'
-import Input from '../../components/Input'
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
+
 import { useNavigation } from '@react-navigation/native';
 import CustomeText from '../../components/CustomeText';
 import createStyles from '../../constant/CustomStyle';
