@@ -70,8 +70,7 @@ const Dashboard = () => {
                 <View style={{ alignItems: 'flex-start', justifyContent: 'center', width: '60%' }}>
                   <CustomeText title={item.number} style={{ paddingBottom: 5, color: 'white', fontWeight: 'bold' }} />
                   <CustomeText title={item.name} numberOfLines={1} style={{ color: 'white', fontWeight: 'bold' }} />
-                  {/* <Text style={[styles.titleText, { alignSelf: 'flex-start' }]}>48</Text> */}
-                  {/* <CustomeText title={item.name} style={styles.titleText} /> */}
+                 
                 </View>
               </View>)
           })}
@@ -104,7 +103,6 @@ const Dashboard = () => {
               </TouchableOpacity>
             )
           })}
-
         </View>
       </ScrollView>
     </View>
