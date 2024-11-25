@@ -55,8 +55,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: width * 0.04, // Relative padding
-    height: height * 0.06, 
-    marginBottom:5
+    height: height * 0.07, 
+    marginBottom:5,
+    // margin: 15
   },
   backButton: {
     marginRight: width * 0.02, // Adjust spacing

@@ -1,41 +1,39 @@
-import { Image, StyleSheet, Text, useColorScheme, View } from 'react-native'
-import React, { useState } from 'react'
+import { FlatList, Image, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import createStyles from '../../constant/CustomStyle';
 import CustomHeader from '../../components/CustomHeader';
 import CustomeText from '../../components/CustomeText';
 import Color from '../../constant/Color';
-import { ProductData ,CustomImageUrl} from '../../constant/ConstantData';
+import { ProductData, CustomImageUrl, movingData } from '../../constant/ConstantData';
+import MovingBoxItem from '../../components/MovingBoxItem';
 
 const MovingScreens = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
 
-  const [data, setData] = useState(ProductData)
+  const [data, setData] = useState(movingData)
 
+  const handleClick = (item) => {
+    console.log('navigate to edit form', item)
+  }
+
+  // useEffect(()=>{
+  //  const newArr= Array.from({length:10},(_,i)=>{
+  //     id=`${data?.length+1}`
+  //     name=`Prüfservice${data.length+1}`,
+  //     description=`Dachboden Entladung${data.length+2}`,
+  //     price=`100${data.length+1}`
+  //   })
+  //   let final = [...data,...newArr]
+  //   setData(final)
+  // })
   return (
     <View style={Styles.container}>
       <CustomHeader placeholder='Search Moving here!' />
-      <View style={Styles.boxContainer}>
-
-        <View style={Styles.imageContainer}>
-          <Image
-            source={{ uri: CustomImageUrl.toolImage }}
-            style={[Styles.image,]}
-            resizeMode="cover"
-
-          />
-        </View>
-
-        <View style={[Styles.detailsContainer,]}>
-          <CustomeText style={{fontSize:18,}} numberOfLines={3} title='Prüfservice' />
-          <CustomeText style={styles.text} numberOfLines={3} title='Dachboden Entladung' />
-        </View>
-
-        <View style={[Styles.priceContainer,]}>
-          <CustomeText title='100 €' />
-        </View>
-
-      </View>
+      <FlatList
+        data={movingData}
+        renderItem={({ item }) => <MovingBoxItem item={item} onPress={(item) => handleClick(item)} />}
+      />
     </View>
   )
 }
@@ -43,9 +41,9 @@ const MovingScreens = () => {
 export default MovingScreens
 
 const styles = StyleSheet.create({
-  text:{
+  text: {
     // fontSize:18
-      color:Color.textColor,
-      paddingTop:5
+    color: Color.textColor,
+    paddingTop: 5
   }
 })
