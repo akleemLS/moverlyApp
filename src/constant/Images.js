@@ -5,7 +5,10 @@ const ImageUrls ={
     estimate:require('../Assest/Icons/Estimates.png'),
     leads:require('../Assest/Icons/Leads.png'),
     moving:require('../Assest/Icons/Moving.png'),
-    product:require('../Assest/Icons/Products.png')
+    product:require('../Assest/Icons/Products.png'),
+    timer:require('../Assest/Icons/timer.png'),
+    target:require('../Assest/Icons/target.png')
+
 
 }
 export default ImageUrls;

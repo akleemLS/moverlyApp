@@ -83,3 +83,87 @@ export const movingData = [
   }
 ]
 
+export const dropdownData = [
+  "Living Room ",
+  "Guest Room",
+  "Store Room",
+  "Personal Room",
+  "Driving Room",
+  "Bed Rood",
+  "Hotel Room",
+  "Reception Room",
+  "Class Room",
+  "Meeting Room"
+];
+
+export const numberDropDown =    Array.from({ length: 40 }, (_, i) => i * 10);
+
+
+export const graphData ={
+  chartData:[20, 45, 28, 80, 99, 43, 74, 44, 22, 11, 11],
+  chartLabels :[
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+  ]
+  
+}
+
+
+export const profileImageUrl = 'https://i.sstatic.net/l60Hf.png';
+
+export const OrderData = [
+  {
+    name: 'wfd Dcdoefuehufieh hohef',
+    email: 'email@yopmail.com',
+    address: 'Berlin list and selhfioejfhoeifjoiej fefoiejfej fneof feifhoehfeo l',
+    address1: 'fioejfoeifjoeijfioej',
+    status: 'Pending',
+    date: '11-12-2024',
+    date1: '12-12-2024',
+  },
+  {
+    name: 'fef Dfefoe',
+    email: 'email@yopmail.com',
+    address: 'Berlin list and sell',
+    address1: 'Berlin',
+    status: 'Pending',
+    date: '11-12-2024',
+    date1: '12-12-2024',
+  },
+  {
+    name: 'efe Dffioudhfoe',
+    email: 'email@yopmail.com',
+    address: 'Berlin list and sell',
+    address1: 'Berlin',
+    status: 'Pending',
+    date: '11-12-2024',
+    date1: '12-12-2024',
+  },
+  {
+    name: 'Ja3refne Doe',
+    email: 'email@yfiil.com',
+    address: 'Berlin list and sell',
+    address1: 'Berlin',
+    status: 'Complete',
+    date: '11-12-2024',
+    date1: '12-12-2024',
+  },
+  {
+    name: '2anef Doe',
+    email: 'email@yopmail.com',
+    address: 'Berlin list and sell',
+    address1: 'Bereoifjieojfeojlin',
+    status: 'Waiting Customer Response',
+    date: '11-12-2024',
+    date1: '12-12-2024',
+  },
+  // Add more dummy data as needed
+]

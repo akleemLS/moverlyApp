@@ -8,7 +8,7 @@ import List from '../screens/list/List';
 import Profile from '../screens/profiles/Profile';
 import Calender from '../screens/calender/Calender';
 import AddLead from '../screens/pushIcon/AddLead';
-import MovingScreens from '../screens/dashboard/MovingScreens';
+import MovingScreens from '../screens/dashboard/movingSection/MovingScreens';
 import ProductServices from '../screens/dashboard/ProductServices';
 import ServicesServices from '../screens/dashboard/ServicesServices';
 import OrderServices from '../screens/dashboard/OrderServices';

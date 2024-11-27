@@ -14,7 +14,7 @@ import EstimatesServices from '../screens/dashboard/EstimatesServices';
 import OrderServices from '../screens/dashboard/OrderServices';
 import ServicesServices from '../screens/dashboard/ServicesServices';
 import ProductServices from '../screens/dashboard/ProductServices';
-import MovingScreens from '../screens/dashboard/MovingScreens';
+import MovingScreens from '../screens/dashboard/movingSection/MovingScreens';
 import ViewList from '../screens/list/ViewList';
 import AddLead from '../screens/pushIcon/AddLead';
 import Calender from '../screens/calender/Calender';
@@ -22,6 +22,12 @@ import createStyles from '../constant/CustomStyle';
 import Color from '../constant/Color';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import EditProduct from '../screens/products/EditProduct';
+import EditMovingService from '../screens/dashboard/movingSection/EditMovingService';
+import MovingMaterial from '../screens/dashboard/movingMaterailSection/MovingMaterial';
+import EditMovingMaterail from '../screens/dashboard/movingMaterailSection/EditMovingMaterail';
+import Customer from '../screens/dashboard/customer/Customer';
+import EditCustomer from '../screens/dashboard/customer/EditCustomer';
+import ViewOrderStatus from '../screens/profiles/ViewOrderStatus';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,8 +41,15 @@ const DashboardStack = () => (
     <Tab.Screen name="OrderServices" component={OrderServices} />
     <Tab.Screen name="ServicesServices" component={ServicesServices} />
     <Tab.Screen name="ProductServices" component={ProductServices} />
-    <Tab.Screen name="MovingServices" component={MovingScreens} />
     <Tab.Screen name="EditProduct" component={EditProduct}/>
+    <Tab.Screen name="MovingServices" component={MovingScreens} />
+    <Tab.Screen name="EditMovingService" component={EditMovingService} />
+    <Tab.Screen name="MovingMaterail" component={MovingMaterial} />
+    <Tab.Screen name="EditMovingMaterail" component={EditMovingMaterail} />
+    <Tab.Screen name="Customer" component={Customer} />
+    <Tab.Screen name="EditCustomer" component={EditCustomer} />
+
+
   </Stack.Navigator>
 );
 
@@ -65,7 +78,7 @@ const CalendarStack = () => (
 const ProfileStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="Profile" component={Profile} />
-    {/* <Stack.Screen name="EditProfile" component={EditProfile} /> */}
+    <Stack.Screen name="ViewOrderStatus" component={ViewOrderStatus} />
   </Stack.Navigator>
 );
 

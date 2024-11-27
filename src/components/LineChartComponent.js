@@ -30,7 +30,7 @@ const LineChartComponent = ({ data, labels }) => {
   // let arr =[{value:1,label:'new'},{value:90,label:'new2'},{value:1,label:'new4'},{value:100,label:'new5'}]
 
   return (
-    <View style={styles.container}>
+
       <LineChart
         data={chartData}
         // data2={arr}
@@ -55,7 +55,7 @@ const LineChartComponent = ({ data, labels }) => {
         labelColor={chartStyles.labelColor} // X-axis and Y-axis labels color
        
       />
-    </View>
+    // </View>
   );
 };
 

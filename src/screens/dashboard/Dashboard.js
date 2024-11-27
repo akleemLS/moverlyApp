@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  PixelRatio,
   ScrollView,
   StyleSheet,
   Text,
@@ -16,9 +17,13 @@ import ImageUrls from '../../constant/Images';
 import createStyles from '../../constant/CustomStyle';
 import { useNavigation } from '@react-navigation/native';
 import Color from '../../constant/Color';
+import { graphData } from '../../constant/ConstantData';
 
 const { width, height } = Dimensions.get('window'); // Get screen dimensions
+const scale = width / 375; // Base width for scaling, adjust as needed
 
+// Responsive size function
+const responsiveSize = (size) => PixelRatio.roundToNearestPixel(size * scale);
 const Dashboard = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation();
@@ -29,7 +34,9 @@ const Dashboard = () => {
     { name: 'Orders', image: ImageUrls.order },
     { name: 'Services', image: ImageUrls.service },
     { name: 'Products', image: ImageUrls.product },
+    { name: 'Moving Service', image: ImageUrls.moving },
     { name: 'Moving Material', image: ImageUrls.moving },
+    { name: 'Customer', image: ImageUrls.moving },
     
   ]);
 
@@ -40,19 +47,7 @@ const Dashboard = () => {
     { number: '37', name: 'Verkaufe' },
   ];
 
-  const chartData = [20, 45, 28, 80, 99, 43, 74, 44, 22, 11, 11];
-  const chartLabels = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-  ];
+
 
   const Styles = createStyles(isDarkMode);
 
@@ -62,7 +57,9 @@ const Dashboard = () => {
     Orders: 'OrderServices',
     Services: 'ServicesServices',
     Products: 'ProductServices',
-    'Moving Material': 'MovingServices',
+    'Moving Material': 'MovingMaterail',
+    'Moving Service': 'MovingServices',
+    Customer:"Customer"
   };
 
   const handleServiceBoxClick = (item) => {
@@ -107,12 +104,12 @@ const Dashboard = () => {
             <CustomeText title={'Statistic'} style={styles.title} />
           </View>
           <View style={styles.chartContainer}>
-            <LineChartComponent data={chartData} labels={chartLabels} />
+            <LineChartComponent data={graphData.chartData} labels={graphData.chartLabels} />
           </View>
         </View>
 
         {/* Service Boxes */}
-        <View style={[styles.boxView]}>
+        {/* <View style={[styles.boxView]}>
           {serviceData.map((item, ind) => (
             <TouchableOpacity
               onPress={() => handleServiceBoxClick(item)}
@@ -132,7 +129,34 @@ const Dashboard = () => {
               />
             </TouchableOpacity>
           ))}
+        </View> */}
+
+        {/* Service Boxes */}
+        <View style={styles.serviceContainer}>
+          <View style={styles.boxView1}>
+            {serviceData.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => handleServiceBoxClick(item)}
+                style={styles.serviceBox}>
+                <View style={styles.imageContainer}>
+                  <Image
+                    source={item.image}
+                    style={styles.image}
+                    resizeMode={'contain'}
+                  />
+                </View>
+                <CustomeText
+                  numberOfLines={1}
+                  title={item.name}
+                  style={styles.serviceName}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
+
+
       </ScrollView>
     </View>
   );
@@ -156,8 +180,8 @@ const styles = StyleSheet.create({
     backgroundColor: Color.primaryColor,
     flexDirection: 'row',
     height: height * 0.12,
-    width: '45%', 
-    marginBottom: height * 0.02, 
+    width: '45%',
+    marginBottom: height * 0.02,
     borderRadius: 10,
     alignItems: 'center',
   },
@@ -182,18 +206,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: height * 0.015,
   },
+  serviceContainer: {
+    marginTop: height * 0.02,
+    justifyContent:'center',
+    marginLeft:10
+  },
 
+  boxView1: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start', 
+    alignItems: 'center',       
+    paddingHorizontal: '5%',  
+
+  },
   serviceBox: {
     backgroundColor: Color.white,
-    height: height * 0.12,
-    width: '30%', 
-    marginBottom: height * 0.02, 
-    borderRadius: 10,
+    height: responsiveSize(100),  
+    width: '30%',                 
+    marginBottom: responsiveSize(15), 
+    marginRight: '3.3%',          
+    borderRadius: responsiveSize(8), 
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 2,
+    elevation: .5,
     shadowColor: Color.primaryColor,
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
   },
   imageContainer: {
     height: '60%',
@@ -201,26 +239,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: '90%',             
+    height: '90%',
   },
   serviceName: {
+    fontSize: responsiveSize(12), 
     color: Color.textColor,
-    fontSize: height * 0.015,
     textAlign: 'center',
   },
+
   chartSection: {
-    marginVertical: height * 0.02, 
-    width: '90%', 
-    alignSelf: 'center', 
+    marginVertical: height * 0.02,
+    width: '90%',
+    alignSelf: 'center',
   },
   header: {
-    marginBottom: height * 0.02, 
-    alignItems: 'flex-start', 
+    marginBottom: height * 0.02,
+    alignItems: 'flex-start',
   },
   chartContainer: {
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
     width: '100%',
   },
   title: {
