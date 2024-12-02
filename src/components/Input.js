@@ -1,51 +1,61 @@
-import { StyleSheet, TextInput, useColorScheme, View } from 'react-native'
-import React from 'react'
-import CustomeText from './CustomeText'
+import React from 'react';
+import { StyleSheet, useColorScheme, View } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import createStyles from '../constant/CustomStyle';
 
-const Input = ({ onChangeText, placeholder, value, title ,style,placeholderTextColor="#888"}) => {
-    const isDarkMode = useColorScheme() === 'dark';
-    const Styles = createStyles(isDarkMode);
-    return (
-        <View style={[styles.container]}>
-            {title && 
-             <View style={styles.titleView}>
-             <CustomeText title={title} />
-         </View>
-            }
-           
-            <TextInput
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                value={value}
-                style={[styles.inputText,Styles.boxBackgroundStyle,Styles.color]}
-                // placeholderTextColor="#888" 
-                placeholderTextColor={placeholderTextColor}
-                // Change this for custom placeholder color
-            />
-        </View>
-    )
-}
+const Input = ({
+  title = 'Input',
+  value,
+  onChangeText,
+  placeholder,
+  placeholderTextColor = '#888',
+  mode = 'outlined', // 'flat' or 'outlined'
+  borderRadius = 10, // Default border radius
+  style,
+  ...props
+}) => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const Styles = createStyles(isDarkMode);
 
-export default Input
+  return (
+    <View style={[styles.container, style]}>
+      <TextInput
+        label={title}
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+        mode={mode}
+        style={[Styles.boxBackgroundStyle, Styles.color,{
+        //   borderRadius, // Customizable border radius
+          overflow: 'hidden', // Ensures rounded corners
+        }]}
+        theme={{
+          colors: {
+            primary: isDarkMode ? '#bb86fc' : '#007bff', // Border color on focus
+            text: isDarkMode ? '#fff' : '#000', // Text color
+            placeholder: isDarkMode ? '#aaa' : '#fff', // Placeholder text color
+            background: isDarkMode ? '#121212' : '#f9f9f9', // Background color
+          },
+          roundness: borderRadius,
+        }}
+        outlineStyle={{
+          borderWidth: 0.5, // Set your desired border width
+          borderColor: !isDarkMode ? '#444' : '#ffffff', // Border color
+        }}
+       
+        {...props}
+      />
+    </View>
+  );
+};
+
+export default Input;
 
 const styles = StyleSheet.create({
-    titleView:{
-        margin:5
-    },
-    container: {
-        width: '100%',
-        marginVertical: 10,
-        paddingHorizontal: 15,
-    },
-    inputText: {
-        height: 50,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 15,
-        fontSize: 16,
-        color: '#333', // Change this for custom text color
-        backgroundColor: '#f9f9f9', // Customize background color here
-    },
-})
+  container: {
+    width: '95%',
+    marginVertical: 10,
+    alignSelf:'center'
+  },
+});

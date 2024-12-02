@@ -45,7 +45,7 @@ const EditProduct = (props) => {
 
 
                 <View style={styles.allIputsView}>
-                    <Input placeholder={'Product name!'} title={'Titile Product'} />
+                    <Input placeholder={'Product name!'} label={'Titile Product'} />
                     <Input placeholder={'Titile Product ED'} />
                     <CustomDropdown data={dropData} onSelect={handleDropdown} title={'dropdow'} />
 
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     inputBox: {
-        width: '45%',
+        width: '50%',
         // borderWidth: 1
     }
 })

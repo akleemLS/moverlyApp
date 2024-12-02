@@ -19,7 +19,7 @@ const MovingScreens = () => {
       name: `Prüfservice${data.length + i + 1}`,
       description: `Dachboden Entladung${data.length + i + 1}`,
       price: `${100 * (data.length + i + 1)}`, 
-      image:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Tools_clipart.png'
+      image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzgcksO1olq1-hybqYi_W5nZx1EPs-bMxjxpumI2h8jntXkXQzm0BwvxhpWZ4GaFLW0E&usqp=CAU'
     }));
     const final = [...data, ...newArr];
     setData(final);

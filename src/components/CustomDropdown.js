@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#CCC',
+    // borderWidth:1
   },
   selectedText: {
     fontSize: height * 0.019,

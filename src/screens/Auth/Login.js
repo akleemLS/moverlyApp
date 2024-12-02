@@ -7,6 +7,7 @@ import CustomButton from '../../components/CustomButton'
 import ImageUrls from '../../constant/Images'
 import Color from '../../constant/Color'
 import createStyles from '../../constant/CustomStyle'
+import CustomInput from '../../components/CustomInput'
 
 
 const Login = () => {
@@ -21,15 +22,16 @@ const Login = () => {
 
     return (
         <View style={[styles.container, Styles.backgroundColor]}>
+            
             <View style={styles.logoView}>
-                <Image source={ImageUrls.logo} resizeMode="contain" style={styles.logo} />
+                <Image source={!isDarkMode? ImageUrls.logo:ImageUrls.dark_logo} resizeMode="contain" style={styles.logo} />
             </View>
             <View style={styles.welcomHeading}>
                 <CustomeText title={'Welcome!'} style={styles.headingText} />
             </View>
             <View style={{margin:10}}>
-                <Input placeholder={'Enter your Email'} />
-                <Input placeholder={'Enter your Password'} />
+                <CustomInput placeholder={'Enter your Email'} />
+                <CustomInput placeholder={'Enter your Password'} />
                 <TouchableOpacity>
                     <CustomeText title={'Forgot Passowrd ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
                 </TouchableOpacity>

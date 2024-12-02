@@ -1,5 +1,6 @@
 const ImageUrls ={
     logo:require('../Assest/logo.png'),
+    dark_logo:require('../Assest/dark_logo.png'),
     service:require('../Assest/Icons/Service.png'),
     order:require('../Assest/Icons/Order.png'),
     estimate:require('../Assest/Icons/Estimates.png'),

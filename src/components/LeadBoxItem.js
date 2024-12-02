@@ -8,7 +8,9 @@ import Color from '../constant/Color';
 
 
 const statusColors = {
-  Active: { badgeColor: '#90EE90', textColor: '#228B222' },
+  // Active: { badgeColor: '#90EE90', textColor: '#228B222' },
+  Active: { badgeColor: '#90EE90', textColor: 'green' },
+
   'Waiting Customer Response': { badgeColor: '#ADD8E6', textColor: '#007BFF' },
   default: { badgeColor: '#D3D3D333', textColor: 'orange' },
 };
@@ -22,10 +24,6 @@ const LeadBoxItem = ({ item, onPress, }) => {
 
 
 
-
-
-
-
   return (
     <TouchableOpacity
       onPress={() => onPress(item)}
@@ -35,7 +33,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
       ]}
     >
       <View style={styles.headerSection}>
-       
+
         <View style={styles.rowSpaceBetween}>
           <View style={styles.infoSection}>
             <CustomeText
@@ -53,13 +51,17 @@ const LeadBoxItem = ({ item, onPress, }) => {
           </View>
 
           {/* Status Badge Section */}
-          <View style={[styles.statusBadgeContainer, { backgroundColor: badgeColor }]}>
-            <CustomeText
-              title={item?.status}
-              style={[styles.statusText, {color: textColor }]}
-              numberOfLines={2} 
-              ellipsizeMode="tail"
-            />
+          {/* <View style={[styles.statusBadgeContainer, { backgroundColor: badgeColor }]}> */}
+            <View style={[styles.statusBadgeContainer, ]}>
+            <View style={{backgroundColor: badgeColor,borderRadius:10,paddingHorizontal:10 }}>
+              <CustomeText
+                title={item?.status}
+                style={[styles.statusText, { color: textColor }]}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              />
+            </View>
+
           </View>
         </View>
 
@@ -105,7 +107,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
         <CustomeText
           title={item?.address}
           style={styles.addressText}
-          numberOfLines={2} 
+          numberOfLines={2}
           ellipsizeMode="tail"
         />
       </View>
@@ -128,10 +130,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   headerSection: {
-    flex: 1, 
+    flex: 1,
     borderBottomWidth: 2,
     borderBottomColor: 'grey',
-    paddingBottom: 10, 
+    paddingBottom: 10,
   },
   rowSpaceBetween: {
     flexDirection: 'row',
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     flex: 3, // 75% of space
     marginHorizontal: 1,
   },
-  
+
   statusBadgeContainer: {
     flex: 2,
     borderRadius: 20,
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     // flexWrap: 'wrap', // Allow wrapping for dynamic height
   },
-  
+
   statusText: {
     fontSize: 16, // Slightly smaller to fit within the badge
     fontWeight: 'bold',
