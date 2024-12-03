@@ -4,7 +4,7 @@ export const ProductData = [
     name: 'Chair',
     size: '0.40 m3',
     image: 'https://thumbs.dreamstime.com/b/wooden-chair-isolated-11718982.jpg',
-    prices: [{ name: "Montage", amount: '800€' }, { name: 'Demontage', amount: '6€' }, { name: 'Verpacken', amount: '10€' }, { name: "Aupicken", amount: '80€' },]
+    prices: [{ name: "Montage", amount: '800' }, { name: 'Demontage', amount: '6€' }, { name: 'Verpacken', amount: '10€' }, { name: "Aupicken", amount: '80€' },]
   },
   {
     id: 2,

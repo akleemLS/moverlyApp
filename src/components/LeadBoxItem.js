@@ -8,20 +8,25 @@ import Color from '../constant/Color';
 
 
 const statusColors = {
-  // Active: { badgeColor: '#90EE90', textColor: '#228B222' },
-  Active: { badgeColor: '#90EE90', textColor: 'green' },
+  Active: { badgeColor: '#CFFFCF', textColor: '#228B2' },
+  // Active: { badgeColor: '#90EE90', textColor: 'green' },
 
-  'Waiting Customer Response': { badgeColor: '#ADD8E6', textColor: '#007BFF' },
+  'Waiting Customer Response': { badgeColor: '#ADD8E666', textColor: '#007BFF' },
   default: { badgeColor: '#D3D3D333', textColor: 'orange' },
 };
 
 
+const eveOddValue = (index)=>{
+  let isEven= index%2!=0 && {backgroundColor:'#F4F4FD'}
+  return isEven 
+}
 
 
-const LeadBoxItem = ({ item, onPress, }) => {
+
+const LeadBoxItem = ({ item, onPress,index }) => {
   const isDarkMode = useColorScheme() === 'dark';
   const { badgeColor, textColor } = statusColors[item.status] || statusColors.default;
-
+   
 
 
   return (
@@ -30,6 +35,7 @@ const LeadBoxItem = ({ item, onPress, }) => {
       style={[
         styles.container,
         { backgroundColor: isDarkMode ? Color.darkBackground : 'white' },
+         eveOddValue(index)
       ]}
     >
       <View style={styles.headerSection}>
@@ -53,11 +59,11 @@ const LeadBoxItem = ({ item, onPress, }) => {
           {/* Status Badge Section */}
           {/* <View style={[styles.statusBadgeContainer, { backgroundColor: badgeColor }]}> */}
             <View style={[styles.statusBadgeContainer, ]}>
-            <View style={{backgroundColor: badgeColor,borderRadius:10,paddingHorizontal:10 }}>
+            <View style={{backgroundColor: badgeColor,borderRadius:20,}}>
               <CustomeText
                 title={item?.status}
                 style={[styles.statusText, { color: textColor }]}
-                numberOfLines={2}
+                numberOfLines={3}
                 ellipsizeMode="tail"
               />
             </View>
@@ -138,7 +144,7 @@ const styles = StyleSheet.create({
   rowSpaceBetween: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 5,
+    // marginHorizontal: 5,
     marginVertical: 5,
   },
   infoSection: {
@@ -149,20 +155,14 @@ const styles = StyleSheet.create({
   statusBadgeContainer: {
     flex: 2,
     borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-    // flexWrap: 'wrap', // Allow wrapping for dynamic height
+    // borderWidth:1
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // paddingHorizontal: 5,
+    // paddingVertical: 5,
   },
 
-  statusText: {
-    fontSize: 16, // Slightly smaller to fit within the badge
-    fontWeight: 'bold',
-    textAlign: 'center',
-    // padding: 5,
-  },
-
+  
   nameText: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -173,21 +173,10 @@ const styles = StyleSheet.create({
     color: Color.textColor,
     marginTop: 5, // Space between email and status
   },
-  statusBadge: {
-    // margin: 5,
-    height: 40,
-    backgroundColor: '#D3D3D333',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-
-
-  },
+ 
   statusText: {
-    fontSize: 16,
-    color: 'orange',
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: '700',
     textAlign: 'center',
     padding: 5
   },

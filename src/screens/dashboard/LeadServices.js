@@ -92,7 +92,7 @@ const LeadServices = () => {
         <FlatList
           data={filteredLeads}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <LeadBoxItem item={item} onPress={() => handlePress(item)} />}
+          renderItem={({ item,index }) => <LeadBoxItem index ={index} item={item} onPress={() => handlePress(item)} />}
           contentContainerStyle={styles.container}
           showsVerticalScrollIndicator={false}
         />

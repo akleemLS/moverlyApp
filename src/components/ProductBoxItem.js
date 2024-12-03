@@ -4,7 +4,7 @@ import CustomeText from './CustomeText';
 import createStyles from '../constant/CustomStyle';
 
 
-const ProductBoxItem = ({ item ,onPress}) => {
+const ProductBoxItem = ({ item, onPress }) => {
   const Width = Dimensions.get('screen').width;
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
@@ -19,9 +19,9 @@ const ProductBoxItem = ({ item ,onPress}) => {
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: item.image }}
-          style={[styles.image, { backgroundColor: 'transparent' }]} 
+          style={[styles.image, { backgroundColor: 'transparent' }]}
           resizeMode="cover"
-        
+
         />
       </View>
 
@@ -38,9 +38,12 @@ const ProductBoxItem = ({ item ,onPress}) => {
             <View style={{ width: Width / 4.5 }}>
               <CustomeText title={priceLabel?.name} numberOfLines={1} style={styles.priceText} />
             </View>
-            
-            <View style={{ width: Width / 9.5, }}>
+
+            <View style={{ width: Width / 9.5,  flexDirection: 'row', justifyContent: 'space-around' }}>
               <CustomeText numberOfLines={1} title={priceLabel?.amount} style={styles.priceText} />
+              <View style={{}}>
+                <CustomeText numberOfLines={1} title={'€'} style={styles.priceText} />
+              </View>
             </View>
           </View>
         ))}

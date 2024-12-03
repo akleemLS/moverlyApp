@@ -19,13 +19,14 @@ import { useNavigation } from '@react-navigation/native';
 import Color from '../../constant/Color';
 import { graphData } from '../../constant/ConstantData';
 
-const { width, height } = Dimensions.get('window'); // Get screen dimensions
-const scale = width / 375; // Base width for scaling, adjust as needed
+const { width, height } = Dimensions.get('window'); 
+const scale = width / 375; 
 
 // Responsive size function
 const responsiveSize = (size) => PixelRatio.roundToNearestPixel(size * scale);
 const Dashboard = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const Styles = createStyles(isDarkMode);
   const navigation = useNavigation();
 
   const [serviceData, setServiceData] = useState([
@@ -37,7 +38,6 @@ const Dashboard = () => {
     { name: 'Moving Service', image: ImageUrls.moving },
     { name: 'Moving Material', image: ImageUrls.moving },
     { name: 'Customer', image: ImageUrls.moving },
-    
   ]);
 
   const boxArr = [
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
 
 
-  const Styles = createStyles(isDarkMode);
+  
 
   const serviceNavigationMap = {
     Leads: 'LeadServices',
@@ -77,6 +77,7 @@ const Dashboard = () => {
       {/* Scrollable Content */}
       <ScrollView contentContainerStyle={{ paddingBottom: height * 0.05 }}>
         {/* Box Section */}
+        <CustomeText title='Dashboard' style={[styles.title,styles.heading]} />
         <View style={styles.boxView}>
           {boxArr.map((item, index) => (
             <View key={index} style={styles.box}>
@@ -108,29 +109,7 @@ const Dashboard = () => {
           </View>
         </View>
 
-        {/* Service Boxes */}
-        {/* <View style={[styles.boxView]}>
-          {serviceData.map((item, ind) => (
-            <TouchableOpacity
-              onPress={() => handleServiceBoxClick(item)}
-              key={ind}
-              style={[styles.serviceBox]}>
-              <View style={styles.imageContainer}>
-                <Image
-                  source={item.image}
-                  style={styles.image}
-                  resizeMode={'contain'}
-                />
-              </View>
-              <CustomeText
-                numberOfLines={1}
-                title={item.name}
-                style={styles.serviceName}
-              />
-            </TouchableOpacity>
-          ))}
-        </View> */}
-
+     
         {/* Service Boxes */}
         <View style={styles.serviceContainer}>
           <View style={styles.boxView1}>
@@ -176,11 +155,12 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
   },
+  heading:{paddingLeft:20,padding:10,},
   box: {
     backgroundColor: Color.primaryColor,
     flexDirection: 'row',
     height: height * 0.12,
-    width: '45%',
+    width: '47%',
     marginBottom: height * 0.02,
     borderRadius: 10,
     alignItems: 'center',
@@ -209,7 +189,7 @@ const styles = StyleSheet.create({
   serviceContainer: {
     marginTop: height * 0.02,
     justifyContent:'center',
-    marginLeft:10
+    paddingLeft:20
   },
 
   boxView1: {
@@ -217,7 +197,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'flex-start', 
     alignItems: 'center',       
-    paddingHorizontal: '5%',  
+    // paddingHorizontal: '5%',  
 
   },
   serviceBox: {
@@ -264,7 +244,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: height * 0.03, // Responsive title size
-    textAlign: 'center', // Centers text
+    // textAlign: 'center', // Centers text
   },
 });
 
