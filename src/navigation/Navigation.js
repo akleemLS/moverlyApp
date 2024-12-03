@@ -1,40 +1,39 @@
 
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../screens/Home';
 import Login from '../screens/Auth/Login';
-import TabNavigation from './TabNavigation';
-import TabNavigationCustomer from './TabNavigationCustomer';
-import TabNavigationAdmin from './TabNavigationAdmin';
+import AdminTabNavigation from './AdminTabNavigation';
+import EmployeeTabNavigation from './EmployeeTabNavigation';
 
 
 
 const Navigation = () => {
-    const [userRole, setUserRole] = React.useState('admin');
+    const [userRole, setUserRole] = React.useState('employee');
     const Stack = createNativeStackNavigator();
 
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Login'>
                 <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
-                <Stack.Screen name='Home' component={TabNavigation} options={{ headerShown: false }} /> 
-                {/*              
-                {/* {userRole === 'customer' && (
+                {/* <Stack.Screen name='Home' component={TabNavigation} options={{ headerShown: false }} /> */}
+
+                {userRole === 'employee' && (
                     <Stack.Screen
-                        name="Customer"
-                        component={TabNavigationCustomer}
+                        name="Employee"
+                        component={EmployeeTabNavigation}
                         options={{ headerShown: false }}
                     />
                 )}
                 {userRole === 'admin' && (
                     <Stack.Screen
                         name="Admin"
-                        component={TabNavigationAdmin}
+                        component={AdminTabNavigation}
                         options={{ headerShown: false }}
                     />
-                )} */}
+                )}
+
             </Stack.Navigator>
         </NavigationContainer>
     )

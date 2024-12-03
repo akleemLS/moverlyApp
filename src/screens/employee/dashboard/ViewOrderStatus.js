@@ -1,10 +1,10 @@
 import { StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React, { useState } from 'react'
-import createStyles from '../../constant/CustomStyle';
-import CustomHeader from '../../components/CustomHeader';
-import CustomeFlatList from '../../components/CustomeFlatList';
-import LeadBoxItem from '../../components/LeadBoxItem';
-import { OrderData } from '../../constant/ConstantData';
+import createStyles from '../../../constant/CustomStyle';
+import CustomHeader from '../../../components/CustomHeader';
+import CustomeFlatList from '../../../components/CustomeFlatList';
+import LeadBoxItem from '../../../components/LeadBoxItem';
+import { OrderData } from '../../../constant/ConstantData';
 
 
 

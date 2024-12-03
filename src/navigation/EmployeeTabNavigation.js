@@ -1,4 +1,4 @@
-// TabNavigation.js
+// AdminTabNavigation.js
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -27,7 +27,9 @@ import MovingMaterial from '../screens/dashboard/movingMaterailSection/MovingMat
 import EditMovingMaterail from '../screens/dashboard/movingMaterailSection/EditMovingMaterail';
 import Customer from '../screens/dashboard/customer/Customer';
 import EditCustomer from '../screens/dashboard/customer/EditCustomer';
-import ViewOrderStatus from '../screens/profiles/ViewOrderStatus';
+import ViewOrderStatus from '../screens/employee/dashboard/ViewOrderStatus';
+import EmployeeDashboard from '../screens/employee/dashboard/EmployeeDashboard';
+import EmployeeProfile from '../screens/employee/profile/EmployeeProfile';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +37,7 @@ const Stack = createNativeStackNavigator();
 
 const DashboardStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="DashboardMain" component={Dashboard} />
+    <Stack.Screen name="EmployeeDashboard" component={EmployeeDashboard} />
     <Stack.Screen name="LeadServices" component={LeadServices} />
     <Stack.Screen name="EstimateServices" component={EstimatesServices} />
     <Tab.Screen name="OrderServices" component={OrderServices} />
@@ -48,6 +50,7 @@ const DashboardStack = () => (
     <Tab.Screen name="EditMovingMaterail" component={EditMovingMaterail} />
     <Tab.Screen name="Customer" component={Customer} />
     <Tab.Screen name="EditCustomer" component={EditCustomer} />
+    <Tab.Screen name='ViewOrderStatus' component={ViewOrderStatus} />
 
 
   </Stack.Navigator>
@@ -77,7 +80,7 @@ const CalendarStack = () => (
 
 const ProfileStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Profile" component={Profile} />
+    <Stack.Screen name="Profile" component={EmployeeProfile} />
     <Stack.Screen name="ViewOrderStatus" component={ViewOrderStatus} />
   </Stack.Navigator>
 );
@@ -109,7 +112,7 @@ const CustomTabBarButton = ({ children, onPress, focused }) => (
 );
 
 
-const TabNavigation = () => {
+const EmployeeTabNavigation = () => {
 
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
@@ -131,8 +134,6 @@ const TabNavigation = () => {
             backgroundColor:  isDarkMode ? Colors.darker : '#F5F5F5',
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-
-
             height: 70,
             ...styles.shadow,
           },
@@ -190,7 +191,7 @@ const TabNavigation = () => {
             tabBarIcon: ({ focused }) => (
               <FontAwesome name="user-o" size={30} color={focused ? Color.primaryColor : '#748c94'} />
             ),
-            headerShown: false
+            headerShown: true
           }}
         />
       </Tab.Navigator>
@@ -200,7 +201,7 @@ const TabNavigation = () => {
 
 
 
-export default TabNavigation;
+export default EmployeeTabNavigation;
 
 const styles = StyleSheet.create({
   

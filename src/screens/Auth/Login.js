@@ -16,7 +16,8 @@ const Login = () => {
 
     const navigation = useNavigation();
     const loginMethod = () => {
-        navigation.replace('Home')
+        navigation.replace('Employee')
+        // navigation.replace('Admin')
     }
 
 
