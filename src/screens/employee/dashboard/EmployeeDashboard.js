@@ -7,11 +7,13 @@ import CustomeText from '../../../components/CustomeText';
 import Color from '../../../constant/Color';
 import { profileImageUrl } from '../../../constant/ConstantData';
 import ImageUrls from '../../../constant/Images';
+import { useTranslation } from 'react-i18next';
 
 
 const { width } = Dimensions.get('window');
 
 const EmployeeDashboard = () => {
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
 
@@ -26,7 +28,7 @@ const EmployeeDashboard = () => {
         <View style={localStyles.profileContainer}>
           <View style={localStyles.profileHeader}>
             <View style={localStyles.profileInfo}>
-              <CustomeText title="Welcome Back" style={localStyles.welcomeText} />
+              <CustomeText title={t('welcome')} style={localStyles.welcomeText} />
               <CustomeText title="John Doe" style={localStyles.userName} />
               <Text style={localStyles.userRole}>Role</Text>
             </View>

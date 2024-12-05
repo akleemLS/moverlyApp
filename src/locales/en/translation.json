@@ -1,9 +1,49 @@
 {
-  "welcome": "Welcome tddh",
+  "welcome": "Welcome",
   "home": {
     "title": "Home",
     "message": "This is the home screen"
   },
+  "heading": {
+    "Dashboard": "Dashboard",
+    "Statistic": "Statistic",
+    "Edit_Product": "Edit Product",
+    "Edit_Moving_Service": "Edit Moving Services",
+    "Edit_Moving_Materail": "Edit Moving Materail",
+    "Edit_Customer": "Edit Customer",
+    "Calender": "Calender",
+    "Profile": "Profile",
+    "General_Setting":"General Settings",
+    "Account":"Account"
+    
+  },
+  "placeholder": {
+    "Enter_Email": "Enter Email",
+    "Password": "Password",
+    "Leads":"Leads germa",
+    "Estimate":"Estimate",
+    "Order":"Order",
+    "Products":"Products",
+    "Moving_Service":"Moving Services",
+    "Moving_Materail":"Moving Materail",
+    "Customer":"Customer",
+    "Pending_Order":"Pending Order"
+
+  },
+  "button": {
+    "Login":"Login",
+    "Pendding_Order":"Pending Orders",
+    "Complete_Order":"Complete Orders",
+    "Upload":"Upload",
+    "Log_Out":"Log Out"
+  },
+  "validation":{
+    "no_data_available":"Data is not available"
+  },
+  "Forget_Password": "Forget Password",
   "customText": "This is custom text",
-  "changeLanguage": "Change to German"
+  "changeLanguage": "Change to German",
+  "Mode":"Mode",
+  "Change_Password":"Change Password",
+  "Language":"Language"
 }

@@ -8,16 +8,18 @@ import CustomeText from '../../components/CustomeText';
 import createStyles from '../../constant/CustomStyle';
 import LeadBoxItem from '../../components/LeadBoxItem';
 import CustomHeader from '../../components/CustomHeader';
+import { useTranslation } from 'react-i18next';
 
 
 const LeadServices = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
   const [searchQuery, setSearchQuery] = useState('');
   const [leadsData, setLeadsData] = useState([
     {
-      name: 'wfd Dcdoefuehufieh hohef',
+      name: 'wfd Dcdoef',
       email: 'email@yopmail.com',
       address: 'Berlin list and selhfioejfhoeifjoiej fefoiejfej fneof feifhoehfeo l',
       address1: 'fioejfoeifjoeijfioej',
@@ -84,7 +86,7 @@ const LeadServices = () => {
       <CustomHeader
         value={searchQuery}
         onChangeText={handleSearch}
-        placeholder="Search Leads Here!"
+        placeholder={t('placeholder.Leads')}
       />
 
 

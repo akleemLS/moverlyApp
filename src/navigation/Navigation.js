@@ -10,7 +10,9 @@ import EmployeeTabNavigation from './EmployeeTabNavigation';
 
 
 const Navigation = () => {
-    const [userRole, setUserRole] = React.useState('employee');
+    // const [userRole, setUserRole] = React.useState('employee');
+    const [userRole, setUserRole] = React.useState('admin');
+
     const Stack = createNativeStackNavigator();
 
     return (

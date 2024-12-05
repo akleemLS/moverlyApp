@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CustomeText from './CustomeText'
+import { t } from 'i18next'
 
 const CustomeFlatList = ({ data, renderItem }) => {
     return (
@@ -9,7 +10,7 @@ const CustomeFlatList = ({ data, renderItem }) => {
             renderItem={renderItem}
             ListEmptyComponent={
                 <View style={styles.emptyContainer}>
-                    <CustomeText title="Data is not available" style={styles.emptyText} />
+                    <CustomeText title={t('validation.no_data_available')} style={styles.emptyText} />
                 </View>
             }
             contentContainerStyle={
@@ -29,7 +30,8 @@ const styles = StyleSheet.create({
     },
     emptyText: {
         textAlign: 'center',
-        fontSize: 16,
+        fontSize: 22,
+        fontWeight:'600'
     },
     fullHeight: {
         flexGrow: 1, // Ensures content fills the parent height

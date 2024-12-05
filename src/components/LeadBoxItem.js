@@ -16,17 +16,17 @@ const statusColors = {
 };
 
 
-const eveOddValue = (index)=>{
-  let isEven= index%2!=0 && {backgroundColor:'#F4F4FD'}
-  return isEven 
+const eveOddValue = (index) => {
+  let isEven = index % 2 != 0 && { backgroundColor: '#F4F4FD' }
+  return isEven
 }
 
 
 
-const LeadBoxItem = ({ item, onPress,index }) => {
+const LeadBoxItem = ({ item, onPress, index }) => {
   const isDarkMode = useColorScheme() === 'dark';
   const { badgeColor, textColor } = statusColors[item.status] || statusColors.default;
-   
+
 
 
   return (
@@ -35,7 +35,7 @@ const LeadBoxItem = ({ item, onPress,index }) => {
       style={[
         styles.container,
         { backgroundColor: isDarkMode ? Color.darkBackground : 'white' },
-         eveOddValue(index)
+        eveOddValue(index)
       ]}
     >
       <View style={styles.headerSection}>
@@ -57,9 +57,9 @@ const LeadBoxItem = ({ item, onPress,index }) => {
           </View>
 
           {/* Status Badge Section */}
-          {/* <View style={[styles.statusBadgeContainer, { backgroundColor: badgeColor }]}> */}
-            <View style={[styles.statusBadgeContainer, ]}>
-            <View style={{backgroundColor: badgeColor,borderRadius:20,}}>
+
+          <View style={[styles.statusBadgeContainer,]}>
+            <View style={{ backgroundColor: badgeColor, borderRadius: 20, }}>
               <CustomeText
                 title={item?.status}
                 style={[styles.statusText, { color: textColor }]}
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     // paddingVertical: 5,
   },
 
-  
+
   nameText: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     color: Color.textColor,
     marginTop: 5, // Space between email and status
   },
- 
+
   statusText: {
     fontSize: 15,
     fontWeight: '700',

@@ -28,6 +28,7 @@ import EditMovingMaterail from '../screens/dashboard/movingMaterailSection/EditM
 import Customer from '../screens/dashboard/customer/Customer';
 import EditCustomer from '../screens/dashboard/customer/EditCustomer';
 import ViewOrderStatus from '../screens/employee/dashboard/ViewOrderStatus';
+import EmployeeProfile from '../screens/employee/profile/EmployeeProfile';
 
 const Tab = createBottomTabNavigator();
 
@@ -76,8 +77,9 @@ const CalendarStack = () => (
 );
 
 const ProfileStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Profile" component={Profile} />
+  <Stack.Navigator screenOptions={{ headerShown: true }}>
+    {/* <Stack.Screen name="Profile" component={Profile} /> */}
+    <Stack.Screen name="Profile" component={EmployeeProfile} />
     <Stack.Screen name="ViewOrderStatus" component={ViewOrderStatus} />
   </Stack.Navigator>
 );

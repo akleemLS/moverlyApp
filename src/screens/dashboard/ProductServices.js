@@ -6,6 +6,8 @@ import CustomeText from '../../components/CustomeText';
 import ProductBoxItem from '../../components/ProductBoxItem';
 import { useNavigation } from '@react-navigation/native';
 import { ProductData } from '../../constant/ConstantData';
+import { t } from 'i18next';
+import CustomeFlatList from '../../components/CustomeFlatList';
 
 
 const ProductServices = () => {
@@ -28,8 +30,8 @@ const ProductServices = () => {
 
   return (
     <View style={[Styles.container, Styles.backgroundColor]}>
-      <CustomHeader placeholder="Search Product Here!" />
-      <FlatList
+      <CustomHeader placeholder={t('placeholder.Product')} />
+      <CustomeFlatList
         data={productData}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ProductBoxItem item={item} onPress={()=>hanldleProductClick(item)} />}

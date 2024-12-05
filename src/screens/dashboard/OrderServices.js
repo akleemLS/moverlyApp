@@ -8,6 +8,8 @@ import CustomeText from '../../components/CustomeText';
 import createStyles from '../../constant/CustomStyle';
 import LeadBoxItem from '../../components/LeadBoxItem';
 import CustomHeader from '../../components/CustomHeader';
+import { t } from 'i18next';
+import CustomeFlatList from '../../components/CustomeFlatList';
 
 
 const OrderServices = () => {
@@ -83,24 +85,17 @@ const OrderServices = () => {
       <CustomHeader
         value={searchQuery}
         onChangeText={handleSearch}
-        placeholder="Search Orders Here!"
+        placeholder={t("placeholder.Order")}
       />
 
+      <CustomeFlatList
+        data={filteredLeads}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => <LeadBoxItem index={index} item={item} onPress={() => handlePress(item)} />}
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      />
 
-
-      {filteredLeads.length > 0 ? (
-        <FlatList
-          data={filteredLeads}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item ,index}) => <LeadBoxItem index={index} item={item} onPress={() => handlePress(item)} />}
-          contentContainerStyle={styles.container}
-          showsVerticalScrollIndicator={false}
-        />
-      ) : (
-        <View style={styles.noDataContainer}>
-          <CustomeText title='No data Available' style={styles.noDataText} />
-        </View>
-      )}
     </View>
   )
 }

@@ -18,6 +18,8 @@ import createStyles from '../../constant/CustomStyle';
 import { useNavigation } from '@react-navigation/native';
 import Color from '../../constant/Color';
 import { graphData } from '../../constant/ConstantData';
+import { useTranslation } from 'react-i18next';
+
 
 const { width, height } = Dimensions.get('window'); 
 const scale = width / 375; 
@@ -25,6 +27,7 @@ const scale = width / 375;
 // Responsive size function
 const responsiveSize = (size) => PixelRatio.roundToNearestPixel(size * scale);
 const Dashboard = () => {
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
   const navigation = useNavigation();
@@ -77,7 +80,7 @@ const Dashboard = () => {
       {/* Scrollable Content */}
       <ScrollView contentContainerStyle={{ paddingBottom: height * 0.05 }}>
         {/* Box Section */}
-        <CustomeText title='Dashboard' style={[styles.title,styles.heading]} />
+        <CustomeText title={t('heading.Dashboard')} style={[styles.title,styles.heading]} />
         <View style={styles.boxView}>
           {boxArr.map((item, index) => (
             <View key={index} style={styles.box}>
@@ -102,7 +105,7 @@ const Dashboard = () => {
         {/* Statistics Section */}
         <View style={[styles.chartSection]}>
           <View style={styles.header}>
-            <CustomeText title={'Statistic'} style={styles.title} />
+            <CustomeText title={t('heading.Statistic')} style={styles.title} />
           </View>
           <View style={styles.chartContainer}>
             <LineChartComponent data={graphData.chartData} labels={graphData.chartLabels} />

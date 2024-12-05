@@ -5,6 +5,7 @@ import CustomHeader from '../../components/CustomHeader';
 import Input from '../../components/Input';
 import CustomButton from '../../components/CustomButton';
 import CustomDropdown from '../../components/CustomDropdown';
+import { t } from 'i18next';
 
 const EditProduct = (props) => {
 
@@ -40,7 +41,7 @@ const EditProduct = (props) => {
     }
     return (
         <View style={[Styles.container]}>
-            <CustomHeader showSearch={false} title='Edit Product' />
+            <CustomHeader showSearch={false} title={t('heading.Edit_Product')} />
             <ScrollView>
 
 

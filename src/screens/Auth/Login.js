@@ -8,6 +8,7 @@ import ImageUrls from '../../constant/Images'
 import Color from '../../constant/Color'
 import createStyles from '../../constant/CustomStyle'
 import CustomInput from '../../components/CustomInput'
+import { t } from 'i18next'
 
 
 const Login = () => {
@@ -16,8 +17,8 @@ const Login = () => {
 
     const navigation = useNavigation();
     const loginMethod = () => {
-        navigation.replace('Employee')
-        // navigation.replace('Admin')
+        // navigation.replace('Employee')
+        navigation.replace('Admin')
     }
 
 
@@ -28,16 +29,16 @@ const Login = () => {
                 <Image source={!isDarkMode? ImageUrls.logo:ImageUrls.dark_logo} resizeMode="contain" style={styles.logo} />
             </View>
             <View style={styles.welcomHeading}>
-                <CustomeText title={'Welcome!'} style={styles.headingText} />
+                <CustomeText title={t('welcome')} style={styles.headingText} />
             </View>
             <View style={{margin:10}}>
-                <CustomInput placeholder={'Enter your Email'} />
-                <CustomInput placeholder={'Enter your Password'} />
+                <CustomInput placeholder={t('placeholder.Enter_Email')} />
+                <CustomInput placeholder={t('placeholder.Password')} />
                 <TouchableOpacity>
-                    <CustomeText title={'Forgot Passowrd ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
+                    <CustomeText title={t('Forget_Password')+' ?'} style={{ padding: 10, marginLeft: 10, color: Color.primaryColor }} />
                 </TouchableOpacity>
                 <View style={{ alignItems: 'center', marginBottom: 30, paddingTop: 20, width: '90%', alignSelf: 'center' }}>
-                    <CustomButton title='Login' onPress={loginMethod} />
+                    <CustomButton title={t('button.Login')} onPress={loginMethod} />
                 </View>
             </View>
 
