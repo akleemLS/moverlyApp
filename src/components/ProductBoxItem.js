@@ -31,23 +31,34 @@ const ProductBoxItem = ({ item, onPress }) => {
         <CustomeText numberOfLines={1} title={`${item.size}`} style={styles.detailsText} />
       </View>
 
+
       {/* Price Section */}
       <View style={styles.priceContainer}>
         {item?.prices?.map((priceLabel, index) => (
           <View style={styles.priceRow} key={index}>
-            <View style={{ width: Width / 4.5 }}>
+
+            {/* Price Label */}
+            <View style={{ width: Width / 3.8, }}>
               <CustomeText title={priceLabel?.name} numberOfLines={1} style={styles.priceText} />
             </View>
 
-            <View style={{ width: Width / 9.5,  flexDirection: 'row', justifyContent: 'space-around' }}>
-              <CustomeText numberOfLines={1} title={priceLabel?.amount} style={styles.priceText} />
-              <View style={{}}>
-                <CustomeText numberOfLines={1} title={'€'} style={styles.priceText} />
-              </View>
+            {/* Price Value and Symbol */}
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: Width / 10, }}>
+              <CustomeText
+                numberOfLines={1}
+                title={priceLabel?.amount}
+                style={[styles.priceText, { textAlign: 'right' }]}
+              />
+              <CustomeText
+                numberOfLines={1}
+                title={'€'}
+                style={[styles.priceText, { marginLeft: 4 }]}
+              />
             </View>
           </View>
         ))}
       </View>
+
     </TouchableOpacity>
   );
 };
@@ -94,16 +105,19 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   priceContainer: {
-    flex: 3.3,
+    flex: 6, // Increased flex to allow more space
     justifyContent: 'space-around',
-    paddingLeft: 5,
+    paddingHorizontal: 10,
   },
   priceRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 4,
   },
   priceText: {
     fontSize: 16,
+    fontWeight: '500',
   },
 });
 

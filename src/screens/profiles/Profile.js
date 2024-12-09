@@ -1,146 +1,226 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, useColorScheme, View, Dimensions, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Modal,
+  ScrollView,
+} from 'react-native';
+import { Avatar, Card, Text, List, Button, Switch } from 'react-native-paper';
+import { useColorScheme } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import createStyles from '../../constant/CustomStyle';
-import { useNavigation } from '@react-navigation/native';
-import { profileImageUrl } from '../../constant/ConstantData';
+import { changeLanguage } from 'i18next';
 import CustomeText from '../../components/CustomeText';
-import Color from '../../constant/Color';
-import ImageUrls from '../../constant/Images';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
-const { width } = Dimensions.get('window');
 
-const Profile = () => {
+
+
+const Profile = ({ navigation }) => {
   const isDarkMode = useColorScheme() === 'dark';
-  const styles = createStyles(isDarkMode);
+  const Styles = createStyles(isDarkMode);
+  const [darkMode, setDarkMode] = useState(isDarkMode);
+  const [languageModalVisible, setLanguageModalVisible] = useState(false);
+  const { t } = useTranslation();
 
-  const navigation = useNavigation();
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // Add dark mode implementation if needed
+  };
 
-  const handleOrderStatus = (type) => {
-    navigation.navigate('ViewOrderStatus',{type})
-  }
+  const handleChangeLanguage = async (language) => {
+    await changeLanguage(language);
+    setLanguageModalVisible(false);
+  };
+
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={localStyles.profileContainer}>
-          <View style={localStyles.profileHeader}>
-            <View style={localStyles.profileInfo}>
-              <CustomeText title="Welcome Back" style={localStyles.welcomeText} />
-              <CustomeText title="John Doe" style={localStyles.userName} />
-              <Text style={localStyles.userRole}>Role</Text>
-            </View>
-            <View style={localStyles.profileImageContainer}>
-              <Image
-                style={[styles.image, localStyles.profileImage]}
-                source={{ uri: profileImageUrl }}
+    <ScrollView
+      style={[Styles.container, styles.container]}
+      contentContainerStyle={{ paddingBottom: 20 }}
+    >
+      {/* Profile Section */}
+      <Card style={[styles.profileCard, { backgroundColor: isDarkMode ? '#1E1E1E' : '#FFFFFF' }]}>
+        <Card.Content style={styles.profileSection}>
+          <Avatar.Image
+            size={100}
+            source={{
+              uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg',
+            }}
+            style={styles.avatar}
+          />
+          <TouchableOpacity style={styles.editIcon}>
+            <MaterialCommunityIcons name="pencil-circle" size={30} color="blue" />
+          </TouchableOpacity>
+          
+          <CustomeText style={styles.name} title='John Doe' />
+
+          <CustomeText style={styles.email} title='john.doe@example.com' />
+          {/* <Text style={[styles.email, { color: darkMode ? '#AAAAAA' : '#555555' }]}>
+            john.doe@example.com
+          </Text> */}
+        </Card.Content>
+      </Card>
+
+      {/* General Settings Section */}
+      <Card style={[styles.card, { backgroundColor: isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}>
+        <Card.Title
+          title={t('heading.General Settings')}
+          titleStyle={[styles.cardTitle,Styles.color]}
+        />
+        <Card.Content style={styles.cardContent}>
+          <List.Item
+            title={t('Change Password')}
+            titleStyle={Styles.color}
+            left={() => <MaterialCommunityIcons name="key" size={24} style={Styles.color}/>}
+            right={() => <List.Icon icon="chevron-right" />}
+            onPress={() => navigation.navigate('ChangePassword')}
+          />
+          <List.Item
+            title={t('Mode')}
+            titleStyle={Styles.color}
+            left={() => <MaterialCommunityIcons name="theme-light-dark" size={24} style={Styles.color} />}
+            right={() => (
+              <Switch
+                value={darkMode}
+                onValueChange={toggleDarkMode}
+                color={darkMode ? '#BB86FC' : '#6200EE'}
               />
-            </View>
+            )}
+          />
+          <List.Item
+            title={t('Language')}
+            titleStyle={Styles.color}
+            left={() => <Fontisto name="language" size={24} style={Styles.color} />}
+            right={() => <List.Icon icon="chevron-right" />}
+            onPress={() => setLanguageModalVisible(true)}
+          />
+        </Card.Content>
+      </Card>
+
+      {/* Account Section */}
+      <Card style={[styles.card, { backgroundColor: isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}>
+        <Card.Title title={t('heading.Account')}   titleStyle={[styles.cardTitle,Styles.color]} />
+        <Card.Content style={styles.cardContent}>
+          <List.Item
+            title={t('button.Log_Out')}
+            titleStyle={Styles.color}
+            left={() => <MaterialCommunityIcons name="logout" size={24} style={Styles.color} />}
+            onPress={() => console.log('Logout pressed')}
+          />
+        </Card.Content>
+      </Card>
+
+      {/* Language Modal */}
+      <Modal
+        transparent={true}
+        visible={languageModalVisible}
+        animationType="slide"
+        onRequestClose={() => setLanguageModalVisible(false)}
+      >
+        <View style={styles.modalBackground}>
+          <View style={[styles.modalContent, { backgroundColor: darkMode ? '#1E1E1E' : '#FFFFFF' }]}>
+            <CustomeText style={styles.modalTitle} title={'Select Language'} />
+            <Button
+              mode="contained"
+              onPress={() => handleChangeLanguage('en')}
+              style={styles.languageButton}
+            >
+              English
+            </Button>
+            <Button
+              mode="contained"
+              onPress={() => handleChangeLanguage('de')}
+              style={styles.languageButton}
+            >
+              Deutsch
+            </Button>
+            <Button
+              mode="outlined"
+              onPress={() => setLanguageModalVisible(false)}
+              style={styles.cancelButton}
+              color="red"
+            >
+              {t('Cancel')}
+            </Button>
           </View>
-
-          <TouchableOpacity activeOpacity={.5}
-            onPress={() => handleOrderStatus('Pending')}
-            style={localStyles.statusBox}>
-            <View style={localStyles.statusContent}>
-              <View>
-                <CustomeText title="Pending Orders" style={localStyles.statusTitle} />
-                <CustomeText title="20" style={localStyles.statusValue} />
-              </View>
-              <Image
-                source={ImageUrls.timer}
-                style={localStyles.statusImage}
-                resizeMode="contain"
-              />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity activeOpacity={.5}
-            onPress={() => handleOrderStatus('Complete')}
-            style={localStyles.statusBox}>
-            <View style={localStyles.statusContent}>
-              <View>
-                <CustomeText title="Completed Orders" style={localStyles.statusTitle} />
-                <CustomeText title="20" style={localStyles.statusValue} />
-              </View>
-              <Image
-                source={ImageUrls.target}
-                style={localStyles.statusImage}
-                resizeMode="contain"
-              />
-            </View>
-          </TouchableOpacity>
         </View>
-      </ScrollView>
-    </View>
+      </Modal>
+    </ScrollView>
   );
 };
 
 export default Profile;
 
-const localStyles = StyleSheet.create({
-  profileContainer: {
-    padding: width * 0.03,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 20,
   },
-  profileHeader: {
-    height: 190,
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    marginBottom: width * 0.03,
+  profileCard: {
+    marginBottom: 20,
+    borderRadius: 10,
+    overflow: 'hidden',
+    elevation: 3,
   },
-  profileInfo: {
-    height: 100,
-    paddingLeft: width * 0.03,
+  profileSection: {
+    alignItems: 'center',
+    marginBottom: 10,
   },
-  welcomeText: {
-    fontSize: 13,
-    paddingLeft: width * 0.03,
+  avatar: {
+    marginBottom: 10,
   },
-  userName: {
-    paddingVertical: width * 0.02,
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: Color.primaryColor,
-  },
-  userRole: {
-    paddingLeft: width * 0.05,
-  },
-  profileImageContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    margin: width * 0.03,
+  editIcon: {
+    position: 'absolute',
+    bottom: 60,
+    right: 150,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  profileImage: {
-    borderRadius: 50,
-  },
-  statusBox: {
-    height: 100,
-    borderRadius: 20,
-    marginVertical: width * 0.02,
-    backgroundColor: Color.primaryColor,
-  },
-  statusContent: {
-    margin: width * 0.03,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  statusTitle: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: '700',
-  },
-  statusValue: {
-    fontSize: 40,
-    paddingTop: 5,
-    color: 'white',
+  name: {
+    fontSize: 18,
     fontWeight: 'bold',
   },
-  statusImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 20,
+  email: {
+    fontSize: 14,
+    color: '#666',
+  },
+  card: {
+    marginBottom: 20,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  cardContent: {
+    paddingHorizontal: 10,
+    // backgroundColor:'white'
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: '80%',
+    padding: 20,
+    borderRadius: 8,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  languageButton: {
+    marginVertical: 5,
+  },
+  cancelButton: {
+    marginTop: 10,
   },
 });

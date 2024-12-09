@@ -13,7 +13,7 @@
     "Edit_Customer": "Edit Customer",
     "Calender": "Calender",
     "Profile": "Profile",
-    "General_Setting":"General Settings",
+    "General Settings":"General Settings",
     "Account":"Account"
     
   },
@@ -35,7 +35,8 @@
     "Pendding_Order":"Pending Orders",
     "Complete_Order":"Complete Orders",
     "Upload":"Upload",
-    "Log_Out":"Log Out"
+    "Log_Out":"Log Out",
+    "Save":"Save"
   },
   "validation":{
     "no_data_available":"Data is not available"
@@ -45,5 +46,9 @@
   "changeLanguage": "Change to German",
   "Mode":"Mode",
   "Change_Password":"Change Password",
-  "Language":"Language"
+  "Language":"Language",
+  "Select Language":"Select Language",
+  "Price":"Price",
+  "Active":"Active",
+  "Save":"Save"
 }

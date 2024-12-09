@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: .5,
     borderColor: '#CCC',
     // borderWidth:1
   },
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   dropdownList: {
     minWidth: width * 0.5,
-    maxHeight: height * 0.4,
+    maxHeight: height * 0.3,
     borderRadius: 5,
     padding: 10,
     elevation: 1,

@@ -5,14 +5,16 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
-import { Avatar, Card, Text, List, Button, Switch, IconButton } from 'react-native-paper';
+import { Avatar, Card, Text, List, Button, Switch } from 'react-native-paper';
 import { useColorScheme } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from '../../../utils/i18n';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import createStyles from '../../../constant/CustomStyle';
 
 const EmployeeProfile = ({ navigation }) => {
   const isDarkMode = useColorScheme() === 'dark';
+  const Styles = createStyles(isDarkMode);
   const [darkMode, setDarkMode] = useState(isDarkMode);
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const { t } = useTranslation();
@@ -28,22 +30,16 @@ const EmployeeProfile = ({ navigation }) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: darkMode ? '#121212' : '#FFFFFF' }]}>
+    <View style={[Styles.container, styles.container]}>
       {/* Profile Section */}
       <View style={styles.profileSection}>
         <Avatar.Image
-          size={120}
-          source={{ uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg' }} // Placeholder for profile image
+          size={100} // Reduced size for profile circle
+          source={{ uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg' }}
           style={styles.avatar}
         />
         <TouchableOpacity style={styles.editIcon}>
-          <IconButton
-            icon="pencil"
-            size={20}
-            color="#FFF"
-            style={styles.editButton}
-            onPress={() => console.log('Edit Profile Image')}
-          />
+          <MaterialCommunityIcons name="pencil-circle" size={30} color="blue" />
         </TouchableOpacity>
         <Text style={[styles.name, { color: darkMode ? '#FFFFFF' : '#000000' }]}>
           John Doe
@@ -54,43 +50,47 @@ const EmployeeProfile = ({ navigation }) => {
       </View>
 
       {/* General Settings Section */}
-      <Card style={[styles.card, { backgroundColor: darkMode ? '#1E1E1E' : '#F5F5F5' }]}>
-        <Card.Title title={t('General Settings')} />
-        <Card.Content>
-          <List.Item
-            title={t('Change Password')}
-            right={() => <List.Icon icon="chevron-right" />}
-            onPress={() => navigation.navigate('ChangePassword')}
-          />
-          <List.Item
-            title={t('Mode')}
-            right={() => (
-              <Switch
-                value={darkMode}
-                onValueChange={toggleDarkMode}
-                color={darkMode ? '#BB86FC' : '#6200EE'}
-              />
-            )}
-          />
-          <List.Item
-            title={t('Language')}
-            right={() => <List.Icon icon="chevron-right" />}
-            onPress={() => setLanguageModalVisible(true)}
-          />
-        </Card.Content>
-      </Card>
+      <View>
+        <Text style={styles.heading}>{t('General Settings')}</Text>
+        <Card style={[styles.card, { backgroundColor: darkMode ? '#1E1E1E' : '#F5F5F5' }]}>
+          <Card.Content style={styles.cardContent}>
+            <List.Item
+              title={t('Change Password')}
+              right={() => <List.Icon icon="chevron-right" />}
+              onPress={() => navigation.navigate('ChangePassword')}
+            />
+            <List.Item
+              title={t('Mode')}
+              right={() => (
+                <Switch
+                  value={darkMode}
+                  onValueChange={toggleDarkMode}
+                  color={darkMode ? '#BB86FC' : '#6200EE'}
+                />
+              )}
+            />
+            <List.Item
+              title={t('Language')}
+              right={() => <List.Icon icon="chevron-right" />}
+              onPress={() => setLanguageModalVisible(true)}
+            />
+          </Card.Content>
+        </Card>
+      </View>
 
       {/* Account Section */}
-      <Card style={[styles.card, { backgroundColor: darkMode ? '#1E1E1E' : '#F5F5F5' }]}>
-        <Card.Title title={t('Account')} />
-        <Card.Content>
-          <List.Item
-            title={t('button.Log_Out')}
-            onPress={() => console.log('Logout pressed')}
-            left={() => <List.Icon icon="logout" />}
-          />
-        </Card.Content>
-      </Card>
+      <View>
+        <Text style={styles.heading}>{t('Account')}</Text>
+        <Card style={[styles.card, { backgroundColor: darkMode ? '#1E1E1E' : '#F5F5F5' }]}>
+          <Card.Content style={styles.cardContent}>
+            <List.Item
+              title={t('button.Log_Out')}
+              onPress={() => console.log('Logout pressed')}
+              left={() => <List.Icon icon="logout" />}
+            />
+          </Card.Content>
+        </Card>
+      </View>
 
       {/* Language Modal */}
       <Modal
@@ -148,22 +148,36 @@ const styles = StyleSheet.create({
   },
   editIcon: {
     position: 'absolute',
-    bottom: 10,
-    right: 110,
-  },
-  editButton: {
-    backgroundColor: '#6200EE',
+    bottom: 40,
+    right: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   name: {
-    fontSize: 20,
+    fontSize: 18, // Adjusted font size for name
     fontWeight: 'bold',
   },
   email: {
     fontSize: 14,
+    color: '#666',
+  },
+  heading: {
+    backgroundColor: '#D3D3D333', // Grey background color
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    fontSize: 18, // Improved font size for headings
   },
   card: {
     marginBottom: 20,
     borderRadius: 10,
+    overflow: 'hidden',
+  },
+  cardContent: {
+    paddingHorizontal: 5,
+    paddingLeft:10
   },
   modalBackground: {
     flex: 1,

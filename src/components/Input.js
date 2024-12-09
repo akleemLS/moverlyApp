@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, useColorScheme, View } from 'react-native';
+import { Dimensions, StyleSheet, useColorScheme, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import createStyles from '../constant/CustomStyle';
+
+const { width, height } = Dimensions.get('screen');
 
 const Input = ({
   title = 'Input',
@@ -9,8 +11,8 @@ const Input = ({
   onChangeText,
   placeholder,
   placeholderTextColor = '#888',
-  mode = 'outlined', // 'flat' or 'outlined'
-  borderRadius = 10, // Default border radius
+  mode = 'outlined',
+  borderRadius = 10, 
   style,
   ...props
 }) => {
@@ -22,13 +24,14 @@ const Input = ({
       <TextInput
         label={title}
         value={value}
+        // contentStyle={{fontFamily:30}}
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={placeholderTextColor}
         mode={mode}
         style={[Styles.boxBackgroundStyle, Styles.color,{
-        //   borderRadius, // Customizable border radius
-          overflow: 'hidden', // Ensures rounded corners
+          overflow: 'hidden', 
+          // fontSize: height * 0.019,
         }]}
         theme={{
           colors: {
@@ -40,7 +43,7 @@ const Input = ({
           roundness: borderRadius,
         }}
         outlineStyle={{
-          borderWidth: 0.5, // Set your desired border width
+          borderWidth: 0.3, // Set your desired border width
           borderColor: !isDarkMode ? '#444' : '#ffffff', // Border color
         }}
        

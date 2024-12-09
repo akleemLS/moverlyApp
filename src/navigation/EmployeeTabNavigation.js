@@ -101,7 +101,7 @@ const CustomTabBarButton = ({ children, onPress, focused }) => (
         width: 60,
         height: 60,
         borderRadius: 30,
-        backgroundColor: focused ? Color.primaryColor : '#748c94',
+        backgroundColor: focused ? Color.primaryColor : 'black',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -118,7 +118,7 @@ const EmployeeTabNavigation = () => {
   const Styles = createStyles(isDarkMode);
 
   return (
-    <View style={[{flex:1, backgroundColor: isDarkMode ? Colors.darker : Color.lightBackground}]}>
+    <View style={[{flex:1, backgroundColor: isDarkMode ? Colors.darker : Color.lightBackground,}]}>
 
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -148,7 +148,7 @@ const EmployeeTabNavigation = () => {
           component={DashboardStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <Ionicons name="home-outline" size={30} color={focused ? Color.primaryColor : '#748c94'} />
+              <Ionicons name="home-outline" size={30} color={focused ? Color.primaryColor : 'black'} />
             ),
             headerShown: false
 
@@ -159,13 +159,13 @@ const EmployeeTabNavigation = () => {
           component={ListStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome name="list" size={30} color={focused ? Color.primaryColor : '#748c94'} />
+              <FontAwesome name="list" size={30} color={focused ? Color.primaryColor : 'black'} />
             ),
             headerShown: false
           }}
 
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Leads"
           component={AddLeadStack}
           options={{
@@ -174,13 +174,13 @@ const EmployeeTabNavigation = () => {
             ),
             tabBarButton: (props) => <CustomTabBarButton {...props} focused={props.accessibilityState.selected} />,
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Calender"
           component={CalendarStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome name="calendar" size={30} color={focused ? Color.primaryColor : '#748c94'} />
+              <FontAwesome name="calendar" size={30} color={focused ? Color.primaryColor : 'black'} />
             ),
           }}
         />
@@ -189,7 +189,7 @@ const EmployeeTabNavigation = () => {
           component={ProfileStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome name="user-o" size={30} color={focused ? Color.primaryColor : '#748c94'} />
+              <FontAwesome name="user-o" size={30} color={focused ? Color.primaryColor : 'black'} />
             ),
             headerShown: true
           }}

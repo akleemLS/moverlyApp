@@ -6,6 +6,7 @@ import Input from '../../../components/Input';
 import CustomButton from '../../../components/CustomButton';
 import CustomDropdown from '../../../components/CustomDropdown';
 import { dropdownData, numberDropDown } from '../../../constant/ConstantData';
+import { t } from 'i18next';
 
 const EditCustomer = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -24,7 +25,7 @@ const EditCustomer = () => {
 
 
         <View style={styles.allIputsView}>
-            <Input placeholder={'Enter Name Here!'} title={'Name'} />
+            <Input placeholder={t('Enter Name Here!')} title={'Name'} />
     
             <Input placeholder={'Company!'} title={''} />
             <Input placeholder={'Enter Email Here!'} title={'Email'} />
@@ -35,7 +36,7 @@ const EditCustomer = () => {
             <Input placeholder={'Enter Contact Number Here!'} title={'Contact Number'} />
 
             <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
-                <CustomButton title="Save" onPress={handleEditProduct} />
+                <CustomButton title={t("Save")} onPress={handleEditProduct} />
             </View>
         </View>
     </ScrollView>

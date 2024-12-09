@@ -24,7 +24,6 @@ const Login = () => {
 
     return (
         <View style={[styles.container, Styles.backgroundColor]}>
-            
             <View style={styles.logoView}>
                 <Image source={!isDarkMode? ImageUrls.logo:ImageUrls.dark_logo} resizeMode="contain" style={styles.logo} />
             </View>
@@ -41,7 +40,6 @@ const Login = () => {
                     <CustomButton title={t('button.Login')} onPress={loginMethod} />
                 </View>
             </View>
-
 
 
         </View>

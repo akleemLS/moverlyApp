@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, useColorScheme } from 'react-native';
 import PropTypes from 'prop-types';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { t } from 'i18next';
 
 const CustomeText = ({ title, style, numberOfLines, allowFontScaling = true }) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -19,7 +20,7 @@ const CustomeText = ({ title, style, numberOfLines, allowFontScaling = true }) =
         style,
       ]}
     >
-      {title}
+      {t(title)}
     </Text>
   );
 };

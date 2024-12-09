@@ -36,7 +36,7 @@ const createStyles = (isDarkMode) => {
         },
         color: {
             color: isDarkMode ? Color.lightBackground : Color.darkBackground,
-            fontWeight:'400'
+            // fontWeight:'400'
         },
         button: {
             backgroundColor: isDarkMode ? Color.lighter : Color.darker,

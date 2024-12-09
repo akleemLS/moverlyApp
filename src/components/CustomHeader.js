@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.04, // Relative padding
     height: height * 0.07, 
     marginBottom:5,
+    
     // margin: 15
   },
   backButton: {

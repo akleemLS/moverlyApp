@@ -4,10 +4,10 @@ import React from 'react'
 import CustomeText from './CustomeText'
 import Color from '../constant/Color'
 
-const CustomButton = ({style,title='button',onPress}) => {
+const CustomButton = ({ style, title = 'button', onPress }) => {
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.buttonView]}>
-            <CustomeText title={title} style={styles.button} />
+        <TouchableOpacity onPress={onPress} style={[styles.buttonView, style]}>
+            <CustomeText title={`${title}`} style={styles.button} />
         </TouchableOpacity>
     )
 }

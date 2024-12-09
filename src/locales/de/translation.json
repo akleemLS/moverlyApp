@@ -13,7 +13,7 @@
     "Edit_Customer": "Kunde bearbeiten",
     "Calender": "Kalender",
     "Profile": "Profil",
-    "General_Setting": "Allgemeine Einstellungen",
+    "General Settings": "Allgemeine Einstellungen",
     "Account": "Konto"
   },
   "placeholder": {
@@ -33,7 +33,8 @@
     "Pendding_Order": "Ausstehende Bestellungen",
     "Complete_Order": "Abgeschlossene Bestellungen",
     "Upload": "Hochladen",
-    "Log_Out": "Abmelden"
+    "Log_Out": "Abmelden",
+    "Save":"Save"
   },
   "validation":{
     "no_data_available":"Daten sind nicht verfügbar"
@@ -43,5 +44,9 @@
   "changeLanguage": "Wechseln zu Deutsch",
   "Mode": "Modus",
   "Change Password": "Passwort ändern",
-  "Language": "Sprache"
+  "Language": "Sprache",
+  "Select Language":"Sprache auswählen",
+  "Price":"Preis",
+  "Active":"Aktiv",
+  "Save":"Speichern Sie"
 }
