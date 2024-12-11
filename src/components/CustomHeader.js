@@ -23,7 +23,11 @@ const CustomHeader = ({
   const navigation = useNavigation();
 
   return (
-    <View style={[styles.headerContainer, Styles.backgroundColor]}>
+    <View style={[styles.headerContainer,
+    
+    Styles.boxBackgroundStyle
+
+    ]}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="chevron-back-sharp" size={height * 0.03} color={isDarkMode ? 'white' : 'black'} />
       </TouchableOpacity>
@@ -62,6 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.04, // Relative padding
     height: height * 0.07, 
     marginBottom:5,
+    // borderWidth:1
     
     // margin: 15
   },

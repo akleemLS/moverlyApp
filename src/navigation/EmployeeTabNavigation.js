@@ -17,7 +17,6 @@ import ProductServices from '../screens/dashboard/ProductServices';
 import MovingScreens from '../screens/dashboard/movingSection/MovingScreens';
 import ViewList from '../screens/list/ViewList';
 import AddLead from '../screens/pushIcon/AddLead';
-import Calender from '../screens/calender/Calender';
 import createStyles from '../constant/CustomStyle';
 import Color from '../constant/Color';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -30,6 +29,8 @@ import EditCustomer from '../screens/dashboard/customer/EditCustomer';
 import ViewOrderStatus from '../screens/employee/dashboard/ViewOrderStatus';
 import EmployeeDashboard from '../screens/employee/dashboard/EmployeeDashboard';
 import EmployeeProfile from '../screens/employee/profile/EmployeeProfile';
+import CalendarScreen from '../screens/calender/Calendar';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -73,7 +74,7 @@ const AddLeadStack = () => (
 
 const CalendarStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Calender" component={Calender} />
+    <Stack.Screen name="Calender" component={CalendarScreen} />
     {/* Add other nested screens under Calendar here if needed */}
   </Stack.Navigator>
 );

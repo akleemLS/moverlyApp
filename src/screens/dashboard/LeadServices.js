@@ -9,6 +9,7 @@ import createStyles from '../../constant/CustomStyle';
 import LeadBoxItem from '../../components/LeadBoxItem';
 import CustomHeader from '../../components/CustomHeader';
 import { useTranslation } from 'react-i18next';
+import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 
 const LeadServices = () => {
@@ -67,7 +68,7 @@ const LeadServices = () => {
   ]);
 
   const handleSearch = (text) => {
-    console.log('seach quray',text);
+    console.log('seach quray', text);
     setSearchQuery(text);
   };
 
@@ -81,44 +82,47 @@ const LeadServices = () => {
   };
 
   return (
-    <View style={Styles.container}>
+    <CustomSafeAreaView>
+      <View style={Styles.container}>
 
-      <CustomHeader
-        value={searchQuery}
-        onChangeText={handleSearch}
-        placeholder={t('placeholder.Leads')}
-      />
-
-
-      {filteredLeads.length > 0 ? (
-        <FlatList
-          data={filteredLeads}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item,index }) => <LeadBoxItem index ={index} item={item} onPress={() => handlePress(item)} />}
-          contentContainerStyle={styles.container}
-          showsVerticalScrollIndicator={false}
+        <CustomHeader
+          value={searchQuery}
+          onChangeText={handleSearch}
+          placeholder={t('placeholder.Leads')}
         />
-      ) : (
-        <View style={styles.noDataContainer}>
-          <CustomeText title='No data available' style={styles.noDataText}/>
-        </View>
-      )}
 
 
-    </View>
+        {filteredLeads.length > 0 ? (
+          <FlatList
+            data={filteredLeads}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <LeadBoxItem index={index} item={item} onPress={() => handlePress(item)} />}
+            contentContainerStyle={styles.container}
+            showsVerticalScrollIndicator={false}
+          />
+        ) : (
+          <View style={styles.noDataContainer}>
+            <CustomeText title='No data available' style={styles.noDataText} />
+          </View>
+        )}
+
+
+      </View>
+    </CustomSafeAreaView>
+
   )
 }
 
 export default LeadServices;
 
 const styles = StyleSheet.create({
-  noDataContainer:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center'
+  noDataContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  noDataText:{
-    fontSize:22,
-    fontWeight:'800'
+  noDataText: {
+    fontSize: 22,
+    fontWeight: '800'
   }
 })

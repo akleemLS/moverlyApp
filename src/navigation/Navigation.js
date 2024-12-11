@@ -32,7 +32,9 @@ const Navigation = () => {
                     <Stack.Screen
                         name="Admin"
                         component={AdminTabNavigation}
-                        options={{ headerShown: false }}
+                        options={{
+                             headerShown: false,
+                         }}
                     />
                 )}
 

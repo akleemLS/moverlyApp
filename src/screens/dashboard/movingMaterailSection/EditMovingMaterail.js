@@ -6,8 +6,9 @@ import CustomDropdown from '../../../components/CustomDropdown';
 import Input from '../../../components/Input';
 import { dropdownData, numberDropDown } from '../../../constant/ConstantData';
 import CustomButton from '../../../components/CustomButton';
+import CustomSafeAreaView from '../../../components/CustomSafeAreaView';
 
-const EditMovingMaterial = ({}) => {
+const EditMovingMaterial = ({ }) => {
     const isDarkMode = useColorScheme() === 'dark';
     const Styles = createStyles(isDarkMode);
 
@@ -17,55 +18,55 @@ const EditMovingMaterial = ({}) => {
     const handleDropdown = (item) => {
         console.log('selected value', item)
     }
-  return (
-    <View style={[Styles.container]}>
-            <CustomHeader showSearch={false} title='Edit Moving Materails' />
-            <ScrollView>
+    return (
+        <CustomSafeAreaView>
+            <View style={[Styles.container]}>
+                <CustomHeader showSearch={false} title='Edit Moving Materails' />
+                <ScrollView>
 
 
-                <View style={styles.allIputsView}>
-                    <Input placeholder={'Enter Title Here!'} title={'Titile Service'} />
-                    <Input placeholder={'Enter title DE'} title={'Titile DE'} />
-                    <Input placeholder={'Enter Description Here!'} title={'Description'} />
-                   
+                    <View style={styles.allIputsView}>
+                        <Input placeholder={'Enter Title Here!'} title={'Titile Service'} />
+                        <Input placeholder={'Enter title DE'} title={'Titile DE'} />
+                        <Input placeholder={'Enter Description Here!'} title={'Description'} />
 
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Length'} data={numberDropDown} onSelect={handleDropdown} />
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Length'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Breath'} data={dropdownData} onSelect={handleDropdown} />
+                            </View>
                         </View>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Breath'} data={dropdownData} onSelect={handleDropdown} />
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Height'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Cubic Meter'} data={dropdownData} onSelect={handleDropdown} />
+                            </View>
+                        </View>
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Price'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Category'} data={dropdownData} onSelect={handleDropdown} />
+                            </View>
+                        </View>
+
+                        <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
+                            <CustomButton title="Save" onPress={handleEditProduct} />
                         </View>
                     </View>
+                </ScrollView>
+            </View>
+        </CustomSafeAreaView>
 
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Height'} data={numberDropDown} onSelect={handleDropdown} />
-                        </View>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Cubic Meter'} data={dropdownData} onSelect={handleDropdown} />
-                        </View>
-                    </View>
-
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Price'} data={numberDropDown} onSelect={handleDropdown} />
-                        </View>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Category'} data={dropdownData} onSelect={handleDropdown} />
-                        </View>
-                    </View>
-
-                    
-                    
-
-                    <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
-                        <CustomButton title="Save" onPress={handleEditProduct} />
-                    </View>
-                </View>
-            </ScrollView>
-        </View>
-  )
+    )
 }
 
 export default EditMovingMaterial

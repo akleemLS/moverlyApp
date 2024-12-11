@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ProductData } from '../../constant/ConstantData';
 import { t } from 'i18next';
 import CustomeFlatList from '../../components/CustomeFlatList';
+import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 
 const ProductServices = () => {
@@ -29,15 +30,18 @@ const ProductServices = () => {
 
 
   return (
-    <View style={[Styles.container, Styles.backgroundColor]}>
-      <CustomHeader placeholder={t('placeholder.Product')} />
-      <CustomeFlatList
-        data={productData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ProductBoxItem item={item} onPress={()=>hanldleProductClick(item)} />}
-        contentContainerStyle={styles.listContainer}
-      />
-    </View>
+    <CustomSafeAreaView>
+      <View style={[Styles.container, Styles.backgroundColor]}>
+        <CustomHeader placeholder={t('placeholder.Product')} />
+        <CustomeFlatList
+          data={productData}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <ProductBoxItem item={item} onPress={() => hanldleProductClick(item)} />}
+          contentContainerStyle={styles.listContainer}
+        />
+      </View>
+    </CustomSafeAreaView>
+
   );
 };
 

@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
+  StatusBar,
+  SafeAreaView
 } from 'react-native';
 import { Avatar, Card, Text, List, Button, Switch } from 'react-native-paper';
 import { useColorScheme } from 'react-native';
@@ -14,6 +16,9 @@ import createStyles from '../../constant/CustomStyle';
 import { changeLanguage } from 'i18next';
 import CustomeText from '../../components/CustomeText';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import Color from '../../constant/Color';
+import CustomSafeAreaView from '../../components/CustomSafeAreaView';
+
 
 
 
@@ -36,118 +41,124 @@ const Profile = ({ navigation }) => {
   };
 
   return (
-    <ScrollView
-      style={[Styles.container, styles.container]}
-      contentContainerStyle={{ paddingBottom: 20 }}
-    >
-      {/* Profile Section */}
-      <Card style={[styles.profileCard, { backgroundColor: isDarkMode ? '#1E1E1E' : '#FFFFFF' }]}>
-        <Card.Content style={styles.profileSection}>
-          <Avatar.Image
-            size={100}
-            source={{
-              uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg',
-            }}
-            style={styles.avatar}
-          />
-          <TouchableOpacity style={styles.editIcon}>
-            <MaterialCommunityIcons name="pencil-circle" size={30} color="blue" />
-          </TouchableOpacity>
-          
-          <CustomeText style={styles.name} title='John Doe' />
 
-          <CustomeText style={styles.email} title='john.doe@example.com' />
-          {/* <Text style={[styles.email, { color: darkMode ? '#AAAAAA' : '#555555' }]}>
+    <CustomSafeAreaView>
+      <ScrollView
+        style={[Styles.container, styles.container]}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      >
+
+        {/* Profile Section */}
+        <Card style={[styles.profileCard, Styles.boxBackgroundStyle]}>
+          <Card.Content style={styles.profileSection}>
+            <Avatar.Image
+              size={100}
+              source={{
+                uri: 'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg',
+              }}
+              style={styles.avatar}
+            />
+            <TouchableOpacity style={styles.editIcon}>
+              <MaterialCommunityIcons name="pencil-circle" size={30} color="blue" />
+            </TouchableOpacity>
+
+            <CustomeText style={styles.name} title='John Doe' />
+
+            <CustomeText style={styles.email} title='john.doe@example.com' />
+            {/* <Text style={[styles.email, { color: darkMode ? '#AAAAAA' : '#555555' }]}>
             john.doe@example.com
           </Text> */}
-        </Card.Content>
-      </Card>
+          </Card.Content>
+        </Card>
 
-      {/* General Settings Section */}
-      <Card style={[styles.card, { backgroundColor: isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}>
-        <Card.Title
-          title={t('heading.General Settings')}
-          titleStyle={[styles.cardTitle,Styles.color]}
-        />
-        <Card.Content style={styles.cardContent}>
-          <List.Item
-            title={t('Change Password')}
-            titleStyle={Styles.color}
-            left={() => <MaterialCommunityIcons name="key" size={24} style={Styles.color}/>}
-            right={() => <List.Icon icon="chevron-right" />}
-            onPress={() => navigation.navigate('ChangePassword')}
+        {/* General Settings Section */}
+        <Card style={[styles.card, Styles.boxBackgroundStyle]}>
+          <Card.Title
+            title={t('heading.General Settings')}
+            titleStyle={[styles.cardTitle, Styles.color]}
           />
-          <List.Item
-            title={t('Mode')}
-            titleStyle={Styles.color}
-            left={() => <MaterialCommunityIcons name="theme-light-dark" size={24} style={Styles.color} />}
-            right={() => (
-              <Switch
-                value={darkMode}
-                onValueChange={toggleDarkMode}
-                color={darkMode ? '#BB86FC' : '#6200EE'}
-              />
-            )}
-          />
-          <List.Item
-            title={t('Language')}
-            titleStyle={Styles.color}
-            left={() => <Fontisto name="language" size={24} style={Styles.color} />}
-            right={() => <List.Icon icon="chevron-right" />}
-            onPress={() => setLanguageModalVisible(true)}
-          />
-        </Card.Content>
-      </Card>
+          <Card.Content style={styles.cardContent}>
+            <List.Item
+              title={t('Change Password')}
+              titleStyle={Styles.color}
+              left={() => <MaterialCommunityIcons name="key" size={24} style={Styles.color} />}
+              right={() => <List.Icon icon="chevron-right" />}
+              onPress={() => navigation.navigate('ChangePassword')}
+            />
+            <List.Item
+              title={t('Mode')}
+              titleStyle={Styles.color}
+              left={() => <MaterialCommunityIcons name="theme-light-dark" size={24} style={Styles.color} />}
+              right={() => (
+                <Switch
+                  value={darkMode}
+                  onValueChange={toggleDarkMode}
+                  color={darkMode ? '#BB86FC' : '#6200EE'}
+                />
+              )}
+            />
+            <List.Item
+              title={t('Language')}
+              titleStyle={Styles.color}
+              left={() => <Fontisto name="language" size={24} style={Styles.color} />}
+              right={() => <List.Icon icon="chevron-right" />}
+              onPress={() => setLanguageModalVisible(true)}
+            />
+          </Card.Content>
+        </Card>
 
-      {/* Account Section */}
-      <Card style={[styles.card, { backgroundColor: isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}>
-        <Card.Title title={t('heading.Account')}   titleStyle={[styles.cardTitle,Styles.color]} />
-        <Card.Content style={styles.cardContent}>
-          <List.Item
-            title={t('button.Log_Out')}
-            titleStyle={Styles.color}
-            left={() => <MaterialCommunityIcons name="logout" size={24} style={Styles.color} />}
-            onPress={() => console.log('Logout pressed')}
-          />
-        </Card.Content>
-      </Card>
+        {/* Account Section */}
+        <Card style={[styles.card, Styles.boxBackgroundStyle]}>
+          <Card.Title title={t('heading.Account')} titleStyle={[styles.cardTitle, Styles.color]} />
+          <Card.Content style={styles.cardContent}>
+            <List.Item
+              title={t('button.Log_Out')}
+              titleStyle={Styles.color}
+              left={() => <MaterialCommunityIcons name="logout" size={24} style={Styles.color} />}
+              onPress={() => console.log('Logout pressed')}
+            />
+          </Card.Content>
+        </Card>
 
-      {/* Language Modal */}
-      <Modal
-        transparent={true}
-        visible={languageModalVisible}
-        animationType="slide"
-        onRequestClose={() => setLanguageModalVisible(false)}
-      >
-        <View style={styles.modalBackground}>
-          <View style={[styles.modalContent, { backgroundColor: darkMode ? '#1E1E1E' : '#FFFFFF' }]}>
-            <CustomeText style={styles.modalTitle} title={'Select Language'} />
-            <Button
-              mode="contained"
-              onPress={() => handleChangeLanguage('en')}
-              style={styles.languageButton}
-            >
-              English
-            </Button>
-            <Button
-              mode="contained"
-              onPress={() => handleChangeLanguage('de')}
-              style={styles.languageButton}
-            >
-              Deutsch
-            </Button>
-            <Button
-              mode="outlined"
-              onPress={() => setLanguageModalVisible(false)}
-              style={styles.cancelButton}
-              color="red"
-            >
-              {t('Cancel')}
-            </Button>
+        {/* Language Modal */}
+        <Modal
+          transparent={true}
+          visible={languageModalVisible}
+          animationType="slide"
+          onRequestClose={() => setLanguageModalVisible(false)}
+        >
+          <View style={styles.modalBackground}>
+            <View style={[styles.modalContent, { backgroundColor: darkMode ? '#1E1E1E' : '#FFFFFF' }]}>
+              <CustomeText style={styles.modalTitle} title={'Select Language'} />
+              <Button
+                mode="contained"
+                onPress={() => handleChangeLanguage('en')}
+                style={styles.languageButton}
+              >
+                English
+              </Button>
+              <Button
+                mode="contained"
+                onPress={() => handleChangeLanguage('de')}
+                style={styles.languageButton}
+              >
+                Deutsch
+              </Button>
+              <Button
+                mode="outlined"
+                onPress={() => setLanguageModalVisible(false)}
+                style={styles.cancelButton}
+                color="red"
+              >
+                {t('Cancel')}
+              </Button>
+            </View>
           </View>
-        </View>
-      </Modal>
-    </ScrollView>
+        </Modal>
+      </ScrollView>
+    </CustomSafeAreaView>
+
+
   );
 };
 
@@ -155,7 +166,6 @@ export default Profile;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingHorizontal: 16,
     paddingTop: 20,
   },

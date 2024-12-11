@@ -6,10 +6,11 @@ import Input from '../../components/Input';
 import CustomButton from '../../components/CustomButton';
 import CustomDropdown from '../../components/CustomDropdown';
 import { t } from 'i18next';
+import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 const EditProduct = (props) => {
 
-    console.log('props',props)
+    console.log('props', props)
     const isDarkMode = useColorScheme() === 'dark';
     const Styles = createStyles(isDarkMode);
     const [inputValue, setInputValue] = useState({
@@ -40,62 +41,65 @@ const EditProduct = (props) => {
         console.log('selected value', item)
     }
     return (
-        <View style={[Styles.container]}>
-            <CustomHeader showSearch={false} title={t('heading.Edit_Product')} />
-            <ScrollView>
+        <CustomSafeAreaView>
+            <View style={[Styles.container]}>
+                <CustomHeader showSearch={false} title={t('heading.Edit_Product')} />
+                <ScrollView>
 
 
-                <View style={styles.allIputsView}>
-                    <Input placeholder={'Product name!'} label={'Titile Product'} />
-                    <Input placeholder={'Titile Product ED'} />
-                    <CustomDropdown data={dropData} onSelect={handleDropdown} title={'dropdow'} />
+                    <View style={styles.allIputsView}>
+                        <Input placeholder={'Product name!'} label={'Titile Product'} />
+                        <Input placeholder={'Titile Product ED'} />
+                        <CustomDropdown data={dropData} onSelect={handleDropdown} title={'dropdow'} />
 
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Unit Type'} data={dropData} onSelect={handleDropdown} />
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Unit Type'} data={dropData} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Type Value'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
                         </View>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Type Value'} data={numberDropDown} onSelect={handleDropdown} />
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                {/* <Input title={'Product Assembly'} /> */}
+                                <CustomDropdown title={'Product Assembly'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                {/* <Input title={'Product Disassembly'} /> */}
+                                <CustomDropdown title={'Product Disassembly'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                        </View>
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Product Packing'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                {/* <Input title={'Product Unpacking'} /> */}
+                                <CustomDropdown title={'Product Unpacking'} data={numberDropDown} onSelect={handleDropdown} />
+
+                            </View>
+                        </View>
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Category'} data={dropData} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Status'} data={["Active", "Pending", "Completed"]} onSelect={handleDropdown} />
+                            </View>
+                        </View>
+
+                        <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
+                            <CustomButton title="Save" onPress={handleEditProduct} />
                         </View>
                     </View>
+                </ScrollView>
+            </View>
+        </CustomSafeAreaView>
 
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            {/* <Input title={'Product Assembly'} /> */}
-                            <CustomDropdown title={'Product Assembly'} data={numberDropDown} onSelect={handleDropdown} />
-                        </View>
-                        <View style={styles.inputBox}>
-                            {/* <Input title={'Product Disassembly'} /> */}
-                            <CustomDropdown title={'Product Disassembly'} data={numberDropDown} onSelect={handleDropdown} />
-                        </View>
-                    </View>
-
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Product Packing'} data={numberDropDown} onSelect={handleDropdown} />
-                        </View>
-                        <View style={styles.inputBox}>
-                            {/* <Input title={'Product Unpacking'} /> */}
-                            <CustomDropdown title={'Product Unpacking'} data={numberDropDown} onSelect={handleDropdown} />
-                            
-                        </View>
-                    </View>
-
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Category'} data={dropData} onSelect={handleDropdown} />
-                        </View>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Status'} data={["Active","Pending","Completed"]} onSelect={handleDropdown} />
-                        </View>
-                    </View>
-
-                    <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
-                        <CustomButton title="Save" onPress={handleEditProduct} />
-                    </View>
-                </View>
-            </ScrollView>
-        </View>
     )
 }
 

@@ -10,6 +10,7 @@ import LeadBoxItem from '../../components/LeadBoxItem';
 import CustomHeader from '../../components/CustomHeader';
 import { t } from 'i18next';
 import CustomeFlatList from '../../components/CustomeFlatList';
+import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 
 const OrderServices = () => {
@@ -80,23 +81,26 @@ const OrderServices = () => {
   };
 
   return (
-    <View style={Styles.container}>
+    <CustomSafeAreaView>
+      <View style={Styles.container}>
 
-      <CustomHeader
-        value={searchQuery}
-        onChangeText={handleSearch}
-        placeholder={t("placeholder.Order")}
-      />
+        <CustomHeader
+          value={searchQuery}
+          onChangeText={handleSearch}
+          placeholder={t("placeholder.Order")}
+        />
 
-      <CustomeFlatList
-        data={filteredLeads}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <LeadBoxItem index={index} item={item} onPress={() => handlePress(item)} />}
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false}
-      />
+        <CustomeFlatList
+          data={filteredLeads}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => <LeadBoxItem index={index} item={item} onPress={() => handlePress(item)} />}
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+        />
 
-    </View>
+      </View>
+    </CustomSafeAreaView>
+
   )
 }
 

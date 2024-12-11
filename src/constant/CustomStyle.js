@@ -28,7 +28,6 @@ const createStyles = (isDarkMode) => {
         },
         boxBackgroundStyle: {
             backgroundColor: isDarkMode ? Color.darkBackground : 'white' ,
-            // flex:1
         },
         text: {
             color: isDarkMode ? Color.lighter : Colors.darker,

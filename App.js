@@ -1,8 +1,9 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, useColorScheme } from 'react-native';
+import {  StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Navigation from './src/navigation/Navigation';
 import I18nProvider from './src/utils/I18nProvider';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const App = () => {
@@ -15,13 +16,11 @@ const App = () => {
 
   return (
     <I18nProvider>
-      <SafeAreaView style={backgroundStyle}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={backgroundStyle.backgroundColor}
         />
         <Navigation />
-      </SafeAreaView>
     </I18nProvider>
   );
 };

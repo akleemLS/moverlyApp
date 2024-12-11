@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import Color from '../../constant/Color';
 import { graphData } from '../../constant/ConstantData';
 import { useTranslation } from 'react-i18next';
+import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 
 const { width, height } = Dimensions.get('window'); 
@@ -76,7 +77,8 @@ const Dashboard = () => {
   };
 
   return (
-    <View style={Styles.container}>
+    <CustomSafeAreaView>
+   <View style={Styles.container}>
       {/* Scrollable Content */}
       <ScrollView contentContainerStyle={{ paddingBottom: height * 0.05 }}>
         {/* Box Section */}
@@ -141,6 +143,8 @@ const Dashboard = () => {
 
       </ScrollView>
     </View>
+    </CustomSafeAreaView>
+ 
   );
 };
 

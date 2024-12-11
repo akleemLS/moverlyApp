@@ -6,6 +6,7 @@ import { movingData } from '../../../constant/ConstantData';
 import MovingBoxItem from '../../../components/MovingBoxItem';
 import { useNavigation } from '@react-navigation/native';
 import CustomeText from '../../../components/CustomeText';
+import CustomSafeAreaView from '../../../components/CustomSafeAreaView';
 
 const MovingMaterial = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -14,38 +15,41 @@ const MovingMaterial = () => {
   const [movingMaterialData, setMovingMaterailData] = useState([]);
 
 
-    useEffect(()=>{
-        let moreData = Array.from({length:10},(_,i)=>({
-            id:movingData.length+1,
-            name: `Tool cabinet${movingMaterialData.length + i + 1}`,
-            description: `0.300m3${movingMaterialData.length + i + 1}`,
-            price: `${100 * (movingMaterialData.length + i + 1)}`, 
-        }))
-        let final = [...moreData]
-        
-        setMovingMaterailData(final)
-    },[])
+  useEffect(() => {
+    let moreData = Array.from({ length: 10 }, (_, i) => ({
+      id: movingData.length + 1,
+      name: `Tool cabinet${movingMaterialData.length + i + 1}`,
+      description: `0.300m3${movingMaterialData.length + i + 1}`,
+      price: `${100 * (movingMaterialData.length + i + 1)}`,
+    }))
+    let final = [...moreData]
+
+    setMovingMaterailData(final)
+  }, [])
   const handleClick = (item) => {
     console.log('navigate to edit form', item);
     navigation.navigate('EditMovingMaterail', { data: item });
   };
 
   return (
-    <View style={Styles.container}>
-      <CustomHeader placeholder="Search Moving Material Here!" />
-      <FlatList
-        data={movingMaterialData}
-        renderItem={({ item }) => <MovingBoxItem item={item} onPress={(item) => handleClick(item)} />}
-        ListEmptyComponent={
-          <View style={styles.emptyContainer}>
-            <CustomeText title ="Data is not available" style={styles.emptyText}/>
-          </View>
-        }
-        contentContainerStyle={
-          movingMaterialData?.length === 0 ? styles.fullHeight : null
-        }
-      />
-    </View>
+    <CustomSafeAreaView>
+      <View style={Styles.container}>
+        <CustomHeader placeholder="Search Moving Material Here!" />
+        <FlatList
+          data={movingMaterialData}
+          renderItem={({ item }) => <MovingBoxItem item={item} onPress={(item) => handleClick(item)} />}
+          ListEmptyComponent={
+            <View style={styles.emptyContainer}>
+              <CustomeText title="Data is not available" style={styles.emptyText} />
+            </View>
+          }
+          contentContainerStyle={
+            movingMaterialData?.length === 0 ? styles.fullHeight : null
+          }
+        />
+      </View>
+    </CustomSafeAreaView>
+
   );
 };
 

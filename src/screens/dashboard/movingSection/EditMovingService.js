@@ -6,8 +6,9 @@ import CustomDropdown from '../../../components/CustomDropdown';
 import Input from '../../../components/Input';
 import { dropdownData, numberDropDown } from '../../../constant/ConstantData';
 import CustomButton from '../../../components/CustomButton';
+import CustomSafeAreaView from '../../../components/CustomSafeAreaView';
 
-const EditMovingService = ({}) => {
+const EditMovingService = ({ }) => {
     const isDarkMode = useColorScheme() === 'dark';
     const Styles = createStyles(isDarkMode);
 
@@ -17,35 +18,38 @@ const EditMovingService = ({}) => {
     const handleDropdown = (item) => {
         console.log('selected value', item)
     }
-  return (
-    <View style={[Styles.container]}>
-            <CustomHeader showSearch={false} title='Edit Moving Service' />
-            <ScrollView>
+    return (
+        <CustomSafeAreaView>
+            <View style={[Styles.container]}>
+                <CustomHeader showSearch={false} title='Edit Moving Service' />
+                <ScrollView>
 
 
-                <View style={styles.allIputsView}>
-                    <Input placeholder={'Enter Title Here!'} title={'Titile Service'} />
-            
-                    {/* <CustomDropdown data={dropdownData} onSelect={handleDropdown} title={'dropdow'} /> */}
+                    <View style={styles.allIputsView}>
+                        <Input placeholder={'Enter Title Here!'} title={'Titile Service'} />
 
-                    <View style={styles.twoInputView}>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Price'} data={numberDropDown} onSelect={handleDropdown} />
+                        {/* <CustomDropdown data={dropdownData} onSelect={handleDropdown} title={'dropdow'} /> */}
+
+                        <View style={styles.twoInputView}>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Price'} data={numberDropDown} onSelect={handleDropdown} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <CustomDropdown title={'Active'} data={dropdownData} onSelect={handleDropdown} />
+                            </View>
                         </View>
-                        <View style={styles.inputBox}>
-                            <CustomDropdown title={'Active'} data={dropdownData} onSelect={handleDropdown} />
+
+                        <Input placeholder={'Enter Description Here!'} title={'Description'} />
+
+                        <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
+                            <CustomButton title="Save" onPress={handleEditProduct} />
                         </View>
                     </View>
+                </ScrollView>
+            </View>
+        </CustomSafeAreaView>
 
-                    <Input placeholder={'Enter Description Here!'} title={'Description'} />
-
-                    <View style={[Styles.button, { paddingTop: 20, height: '100%', width: '100%' }]}>
-                        <CustomButton title="Save" onPress={handleEditProduct} />
-                    </View>
-                </View>
-            </ScrollView>
-        </View>
-  )
+    )
 }
 
 export default EditMovingService

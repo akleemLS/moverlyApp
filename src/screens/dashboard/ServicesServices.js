@@ -1,11 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { CommonActions, useNavigation } from '@react-navigation/native'
+import CustomSafeAreaView from '../../components/CustomSafeAreaView'
 
 const ServicesServices = () => {
 
   const navigation = useNavigation()
-  const handNavigation =()=>{
+  const handNavigation = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
@@ -13,16 +14,19 @@ const ServicesServices = () => {
       }))
   }
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TouchableOpacity onPress={()=>{
-        handNavigation()
-      }
+    <CustomSafeAreaView>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <TouchableOpacity onPress={() => {
+          handNavigation()
+        }
 
-      }>
-        <Text>ServicesServices</Text>
-      </TouchableOpacity>
+        }>
+          <Text>ServicesServices</Text>
+        </TouchableOpacity>
 
-    </View>
+      </View>
+    </CustomSafeAreaView>
+
   )
 }
 
