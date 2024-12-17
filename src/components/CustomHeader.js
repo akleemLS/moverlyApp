@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   searchInput: {
-    padding: height * 0.019, // Responsive padding
+    padding: height * 0.014, // Responsive padding
     borderRadius: height * 0.05, // Rounded corners relative to screen height
     width: '100%', // Full width for the search box
   },

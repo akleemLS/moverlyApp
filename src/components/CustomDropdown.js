@@ -12,6 +12,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomeText from './CustomeText';
 import createStyles from '../constant/CustomStyle';
+import CustomeFlatList from './CustomeFlatList';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -29,7 +30,7 @@ const CustomDropdown = ({ data, placeholder = 'Choose', onSelect ,title}) => {
   };
 
   return (
-    <View style={[Styles.container, { marginHorizontal: 15, margin: 5 }]}>
+    <View style={[Styles.container, { marginHorizontal: 5, margin: 5 }]}>
 
       {title &&
         <View style={styles.titleView}>
@@ -62,7 +63,7 @@ const CustomDropdown = ({ data, placeholder = 'Choose', onSelect ,title}) => {
           activeOpacity={1}
         >
           <View style={[styles.dropdownList, { backgroundColor: isDarkMode ? '#333' : '#FFF' }]}>
-            <FlatList
+            <CustomeFlatList
               data={data}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => (
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     // borderWidth:1
   },
   selectedText: {
-    fontSize: height * 0.019,
+    fontSize: height * 0.016,
   },
   modalOverlay: {
     flex: 1,

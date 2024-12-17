@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,18 +6,22 @@ import {
   Modal,
   ScrollView,
   StatusBar,
-  SafeAreaView
+  SafeAreaView,
+  Image
 } from 'react-native';
-import { Avatar, Card, Text, List, Button, Switch } from 'react-native-paper';
+import { Avatar, Card, Text, List, Button, Switch, TextInput } from 'react-native-paper';
 import { useColorScheme } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import createStyles from '../../constant/CustomStyle';
-import { changeLanguage } from 'i18next';
 import CustomeText from '../../components/CustomeText';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Color from '../../constant/Color';
 import CustomSafeAreaView from '../../components/CustomSafeAreaView';
+import { Modalize } from 'react-native-modalize';
+import Input from '../../components/Input';
+import CustomButton from '../../components/CustomButton';
+import { changeLanguage } from '../../utils/i18n';
 
 
 
@@ -27,7 +31,16 @@ const Profile = ({ navigation }) => {
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
   const [darkMode, setDarkMode] = useState(isDarkMode);
+  const [passwordModalVisible, setPasswordModalVisible] = useState(false);
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [password, setPassword] = useState({
+    oldPassword: '',
+    newPassword: '',
+  })
+  const passwordModalRef = useRef(null);
+  const languageModalRef = useRef(null)
   const { t } = useTranslation();
 
   const toggleDarkMode = () => {
@@ -40,9 +53,89 @@ const Profile = ({ navigation }) => {
     setLanguageModalVisible(false);
   };
 
-  return (
+  const renderPasswordModal = () => (
+    <View style={[styles.modalContent, { backgroundColor: isDarkMode ? '#1E1E1E' : '#FFFFFF' }]}>
+      <CustomeText style={styles.modalTitle} title={t('Change Password')} />
+      <TextInput
+        label={t('Old Password')}
+        value={oldPassword}
+        onChangeText={(text) => setOldPassword(text)}
+        secureTextEntry
+        style={styles.input}
+      />
+      <TextInput
+        label={t('New Password')}
+        value={newPassword}
+        onChangeText={(text) => setNewPassword(text)}
+        secureTextEntry
+        style={styles.input}
+      />
+      <View style={{ paddingTop: 30 }}>
+        <CustomButton title={t('Change')} />
+      </View>
 
-    <CustomSafeAreaView>
+    </View>
+  );
+
+  const renderLanguageModal = () => (
+    <View style={[styles.modalContent, { backgroundColor: isDarkMode ? '#1E1E1E' : '#FFFFFF' }]}>
+      {/* Title */}
+      <CustomeText style={styles.modalTitle} title={t('Select Language')} />
+
+      {/* Language Selection Options */}
+      <View style={styles.languageOptionsContainer}>
+        {/* English Option */}
+        <TouchableOpacity
+          style={[styles.languageOption, { backgroundColor: isDarkMode ? '#2A2A2A' : '#F5F5F5' }]}
+          onPress={() => {
+            handleChangeLanguage('en')
+            setLanguageModalVisible(false);
+            languageModalRef.current?.close();
+          }}
+        >
+          <Image
+            source={{ uri: 'https://flagcdn.com/w320/us.png' }}
+            style={styles.flagIcon}
+          />
+          <CustomeText style={styles.languageText} title={t('English')} />
+        </TouchableOpacity>
+
+        {/* German Option */}
+        <TouchableOpacity
+          style={[styles.languageOption, { backgroundColor: isDarkMode ? '#2A2A2A' : '#F5F5F5' }]}
+          onPress={() => {
+            handleChangeLanguage('de')
+            setLanguageModalVisible(false);
+            languageModalRef.current?.close();
+          }}
+        >
+          <Image
+            source={{ uri: 'https://flagcdn.com/w320/de.png' }}
+            style={styles.flagIcon}
+          />
+          <CustomeText style={styles.languageText} title={t('Deutsch')} />
+        </TouchableOpacity>
+      </View>
+
+      {/* Cancel Button */}
+      <Button
+        mode="outlined"
+        onPress={() => {
+          setLanguageModalVisible(false);
+          languageModalRef.current?.close();
+        }}
+        style={styles.cancelButton}
+      >
+        {t('Cancel')}
+      </Button>
+    </View>
+  );
+
+  return (
+    <CustomSafeAreaView
+    // backgroundColor="#FF5733" 
+      // statusBarStyle="light-content"
+    >
       <ScrollView
         style={[Styles.container, styles.container]}
         contentContainerStyle={{ paddingBottom: 20 }}
@@ -65,9 +158,7 @@ const Profile = ({ navigation }) => {
             <CustomeText style={styles.name} title='John Doe' />
 
             <CustomeText style={styles.email} title='john.doe@example.com' />
-            {/* <Text style={[styles.email, { color: darkMode ? '#AAAAAA' : '#555555' }]}>
-            john.doe@example.com
-          </Text> */}
+
           </Card.Content>
         </Card>
 
@@ -78,12 +169,17 @@ const Profile = ({ navigation }) => {
             titleStyle={[styles.cardTitle, Styles.color]}
           />
           <Card.Content style={styles.cardContent}>
+
+
             <List.Item
-              title={t('Change Password')}
               titleStyle={Styles.color}
+              title={t('Change Password')}
               left={() => <MaterialCommunityIcons name="key" size={24} style={Styles.color} />}
               right={() => <List.Icon icon="chevron-right" />}
-              onPress={() => navigation.navigate('ChangePassword')}
+              onPress={() => {
+                setPasswordModalVisible(true);
+                passwordModalRef.current?.open();
+              }}
             />
             <List.Item
               title={t('Mode')}
@@ -102,7 +198,11 @@ const Profile = ({ navigation }) => {
               titleStyle={Styles.color}
               left={() => <Fontisto name="language" size={24} style={Styles.color} />}
               right={() => <List.Icon icon="chevron-right" />}
-              onPress={() => setLanguageModalVisible(true)}
+              // onPress={() => setLanguageModalVisible(true)}
+              onPress={() => {
+                setLanguageModalVisible(true);
+                languageModalRef.current?.open();
+              }}
             />
           </Card.Content>
         </Card>
@@ -120,47 +220,29 @@ const Profile = ({ navigation }) => {
           </Card.Content>
         </Card>
 
-        {/* Language Modal */}
-        <Modal
-          transparent={true}
-          visible={languageModalVisible}
-          animationType="slide"
-          onRequestClose={() => setLanguageModalVisible(false)}
-        >
-          <View style={styles.modalBackground}>
-            <View style={[styles.modalContent, { backgroundColor: darkMode ? '#1E1E1E' : '#FFFFFF' }]}>
-              <CustomeText style={styles.modalTitle} title={'Select Language'} />
-              <Button
-                mode="contained"
-                onPress={() => handleChangeLanguage('en')}
-                style={styles.languageButton}
-              >
-                English
-              </Button>
-              <Button
-                mode="contained"
-                onPress={() => handleChangeLanguage('de')}
-                style={styles.languageButton}
-              >
-                Deutsch
-              </Button>
-              <Button
-                mode="outlined"
-                onPress={() => setLanguageModalVisible(false)}
-                style={styles.cancelButton}
-                color="red"
-              >
-                {t('Cancel')}
-              </Button>
-            </View>
-          </View>
-        </Modal>
       </ScrollView>
+      <Modalize
+        ref={languageModalRef}
+        modalHeight={400}
+        onClosed={() => setPasswordModalVisible(false)}
+      >
+        {renderLanguageModal()}
+      </Modalize>
+
+      <Modalize
+        ref={passwordModalRef}
+        modalHeight={400}
+        onClosed={() => setPasswordModalVisible(false)}
+      >
+        {renderPasswordModal()}
+      </Modalize>
     </CustomSafeAreaView>
 
 
   );
 };
+
+
 
 export default Profile;
 
@@ -232,5 +314,48 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     marginTop: 10,
+  },
+  modalContent: {
+    padding: 20,
+    height: '100%',
+  },
+  languageButton: {
+    marginVertical: 5,
+  },
+  cancelButton: {
+    marginTop: 10,
+  },
+  input: {
+    marginVertical: 10,
+    backgroundColor: 'transparent',
+  },
+  languageOptionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginVertical: 20,
+  },
+  languageOption: {
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 10,
+    width: '40%',
+    elevation: 3,
+  },
+  flagIcon: {
+    width: 50,
+    height: 30,
+    resizeMode: 'contain',
+    marginBottom: 10,
+  },
+  languageText: {
+    fontSize: 16,
+    fontWeight: '600',
+    // color: '#333',
+  },
+  cancelButton: {
+    marginTop: 20,
+    width: '80%',
+    alignSelf: 'center',
   },
 });

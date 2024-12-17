@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   priceText: {
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: '500',
   },
 });

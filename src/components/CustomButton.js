@@ -7,7 +7,7 @@ import Color from '../constant/Color'
 const CustomButton = ({ style, title = 'button', onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.buttonView, style]}>
-            <CustomeText title={`${title}`} style={styles.button} />
+            <CustomeText title={title} style={styles.button} />
         </TouchableOpacity>
     )
 }

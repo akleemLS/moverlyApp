@@ -1,3 +1,5 @@
+import ImageUrls from "./Images";
+
 export const ProductData = [
   {
     id: 1,
@@ -167,3 +169,32 @@ export const OrderData = [
   },
   // Add more dummy data as needed
 ]
+
+export const serviceData = [
+  { name: 'Leads', image: ImageUrls.leads },
+  { name: 'Estimates', image: ImageUrls.estimate },
+  { name: 'Orders', image: ImageUrls.order },
+  { name: 'Services', image: ImageUrls.service },
+  { name: 'Products', image: ImageUrls.product },
+  { name: 'Moving Service', image: ImageUrls.moving },
+  { name: 'Moving Material', image: ImageUrls.moving },
+  { name: 'Customer', image: ImageUrls.moving },
+];
+
+export const boxArr = [
+  { number: '48', name: 'Customer' },
+  { number: '47', name: 'Enquiries' },
+  { number: '55', name: 'For sale' },
+  { number: '37', name: 'Ordering' },
+];
+
+export const serviceNavigationMap = {
+  Leads: 'LeadServices',
+  Estimates: 'EstimateServices',
+  Orders: 'OrderServices',
+  Services: 'ServicesServices',
+  Products: 'ProductServices',
+  'Moving Material': 'MovingMaterail',
+  'Moving Service': 'MovingServices',
+  Customer:"Customer"
+};

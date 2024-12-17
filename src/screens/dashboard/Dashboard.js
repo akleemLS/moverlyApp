@@ -1,4 +1,6 @@
 import {
+  Alert,
+  BackHandler,
   Dimensions,
   Image,
   PixelRatio,
@@ -15,15 +17,15 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LineChartComponent from '../../components/LineChartComponent';
 import ImageUrls from '../../constant/Images';
 import createStyles from '../../constant/CustomStyle';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import Color from '../../constant/Color';
-import { graphData } from '../../constant/ConstantData';
+import { boxArr, graphData, serviceData, serviceNavigationMap } from '../../constant/ConstantData';
 import { useTranslation } from 'react-i18next';
 import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 
 const { width, height } = Dimensions.get('window'); 
-const scale = width / 375; 
+const scale = width / 370; 
 
 // Responsive size function
 const responsiveSize = (size) => PixelRatio.roundToNearestPixel(size * scale);
@@ -33,38 +35,6 @@ const Dashboard = () => {
   const Styles = createStyles(isDarkMode);
   const navigation = useNavigation();
 
-  const [serviceData, setServiceData] = useState([
-    { name: 'Leads', image: ImageUrls.leads },
-    { name: 'Estimates', image: ImageUrls.estimate },
-    { name: 'Orders', image: ImageUrls.order },
-    { name: 'Services', image: ImageUrls.service },
-    { name: 'Products', image: ImageUrls.product },
-    { name: 'Moving Service', image: ImageUrls.moving },
-    { name: 'Moving Material', image: ImageUrls.moving },
-    { name: 'Customer', image: ImageUrls.moving },
-  ]);
-
-  const boxArr = [
-    { number: '48', name: 'Kunden' },
-    { number: '47', name: 'Bestelluggen' },
-    { number: '55', name: 'Anfragen' },
-    { number: '37', name: 'Verkaufe' },
-  ];
-
-
-
-  
-
-  const serviceNavigationMap = {
-    Leads: 'LeadServices',
-    Estimates: 'EstimateServices',
-    Orders: 'OrderServices',
-    Services: 'ServicesServices',
-    Products: 'ProductServices',
-    'Moving Material': 'MovingMaterail',
-    'Moving Service': 'MovingServices',
-    Customer:"Customer"
-  };
 
   const handleServiceBoxClick = (item) => {
     console.log('Item clicked:', item);
@@ -75,6 +45,31 @@ const Dashboard = () => {
       console.warn(`No route defined for ${item.name}`);
     }
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        console.log("back button press")
+        // Show confirmation dialog
+        Alert.alert(
+          'Exit App',
+          'Are you sure you want to exit?',
+          [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Exit', onPress: () => BackHandler.exitApp() },
+          ],
+          { cancelable: false }
+        );
+        return true; // Prevent default behavior
+      };
+
+      // Add event listener for back button
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      // Cleanup event listener when leaving the screen
+      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [])
+  );
 
   return (
     <CustomSafeAreaView>
@@ -95,7 +90,7 @@ const Dashboard = () => {
                   style={styles.numberText}
                 />
                 <CustomeText
-                  title={item.name}
+                  title={t(item.name)}
                   numberOfLines={1}
                   style={styles.nameText}
                 />
@@ -132,7 +127,7 @@ const Dashboard = () => {
                 </View>
                 <CustomeText
                   numberOfLines={1}
-                  title={item.name}
+                  title={t(item.name)}
                   style={styles.serviceName}
                 />
               </TouchableOpacity>
@@ -210,9 +205,9 @@ const styles = StyleSheet.create({
   serviceBox: {
     backgroundColor: Color.white,
     height: responsiveSize(100),  
-    width: '30%',                 
+    width: '29%',                 
     marginBottom: responsiveSize(15), 
-    marginRight: '3.3%',          
+    marginRight: '3.5%',          
     borderRadius: responsiveSize(8), 
     alignItems: 'center',
     justifyContent: 'center',

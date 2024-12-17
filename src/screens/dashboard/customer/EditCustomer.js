@@ -1,11 +1,9 @@
-import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { ScrollView, StyleSheet, useColorScheme, View } from 'react-native'
 import React from 'react'
 import createStyles from '../../../constant/CustomStyle';
 import CustomHeader from '../../../components/CustomHeader';
 import Input from '../../../components/Input';
 import CustomButton from '../../../components/CustomButton';
-import CustomDropdown from '../../../components/CustomDropdown';
-import { dropdownData, numberDropDown } from '../../../constant/ConstantData';
 import { t } from 'i18next';
 import CustomSafeAreaView from '../../../components/CustomSafeAreaView';
 
@@ -19,6 +17,7 @@ const EditCustomer = () => {
     const handleDropdown = (item) => {
         console.log('selected value', item)
     }
+
     return (
         <CustomSafeAreaView>
             <View style={[Styles.container]}>
@@ -27,11 +26,8 @@ const EditCustomer = () => {
                     <View style={styles.allIputsView}>
                         <Input placeholder={t('Enter Name Here!')} title={'Name'} />
 
-                        <Input placeholder={'Company!'} title={''} />
+                        {/* <Input placeholder={'Company!'} title={''} /> */}
                         <Input placeholder={'Enter Email Here!'} title={'Email'} />
-
-
-
 
                         <Input placeholder={'Enter Contact Number Here!'} title={'Contact Number'} />
 

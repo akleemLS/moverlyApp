@@ -1,11 +1,10 @@
 // AdminTabNavigation.js
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, StyleSheet, useColorScheme, Keyboard } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Dashboard from '../screens/dashboard/Dashboard';
-
 import Profile from '../screens/profiles/Profile';
 import List from '../screens/list/List';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,7 +16,7 @@ import ProductServices from '../screens/dashboard/ProductServices';
 import MovingScreens from '../screens/dashboard/movingSection/MovingScreens';
 import ViewList from '../screens/list/ViewList';
 import AddLead from '../screens/pushIcon/AddLead';
-import Calender from '../screens/calender/Calendar';
+import CalendarScreen from '../screens/calender/Calendar';
 import createStyles from '../constant/CustomStyle';
 import Color from '../constant/Color';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -28,11 +27,8 @@ import EditMovingMaterail from '../screens/dashboard/movingMaterailSection/EditM
 import Customer from '../screens/dashboard/customer/Customer';
 import EditCustomer from '../screens/dashboard/customer/EditCustomer';
 import ViewOrderStatus from '../screens/employee/dashboard/ViewOrderStatus';
-import EmployeeProfile from '../screens/employee/profile/EmployeeProfile';
-import CalendarScreen from '../screens/calender/Calendar';
 
 const Tab = createBottomTabNavigator();
-
 const Stack = createNativeStackNavigator();
 
 const DashboardStack = () => (
@@ -40,18 +36,16 @@ const DashboardStack = () => (
     <Stack.Screen name="DashboardMain" component={Dashboard} />
     <Stack.Screen name="LeadServices" component={LeadServices} />
     <Stack.Screen name="EstimateServices" component={EstimatesServices} />
-    <Tab.Screen name="OrderServices" component={OrderServices} />
-    <Tab.Screen name="ServicesServices" component={ServicesServices} />
-    <Tab.Screen name="ProductServices" component={ProductServices} />
-    <Tab.Screen name="EditProduct" component={EditProduct} />
-    <Tab.Screen name="MovingServices" component={MovingScreens} />
-    <Tab.Screen name="EditMovingService" component={EditMovingService} />
-    <Tab.Screen name="MovingMaterail" component={MovingMaterial} />
-    <Tab.Screen name="EditMovingMaterail" component={EditMovingMaterail} />
-    <Tab.Screen name="Customer" component={Customer} />
-    <Tab.Screen name="EditCustomer" component={EditCustomer} />
-
-
+    <Stack.Screen name="OrderServices" component={OrderServices} />
+    <Stack.Screen name="ServicesServices" component={ServicesServices} />
+    <Stack.Screen name="ProductServices" component={ProductServices} />
+    <Stack.Screen name="EditProduct" component={EditProduct} />
+    <Stack.Screen name="MovingServices" component={MovingScreens} />
+    <Stack.Screen name="EditMovingService" component={EditMovingService} />
+    <Stack.Screen name="MovingMaterail" component={MovingMaterial} />
+    <Stack.Screen name="EditMovingMaterail" component={EditMovingMaterail} />
+    <Stack.Screen name="Customer" component={Customer} />
+    <Stack.Screen name="EditCustomer" component={EditCustomer} />
   </Stack.Navigator>
 );
 
@@ -59,47 +53,44 @@ const ListStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="List" component={List} />
     <Stack.Screen name="ListView" component={ViewList} />
-    {/* Add other nested screens under List here if needed */}
   </Stack.Navigator>
 );
 
-const AddLeadStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="AddLeads" component={AddLead} />
-    {/* Add other nested screens under AddLead here if needed */}
-  </Stack.Navigator>
-);
-
-const CalendarStack = () => (
-  <Stack.Navigator
-    screenOptions={{
-      // headerStyle: { backgroundColor: Color.primaryColor },
-      headerShown: true, // Enable the header globally
-      headerSearchBarOptions: {
-        placeholder: 'Search events...', // Customize the placeholder text
-        onChangeText: (text) => {
-          console.log('Search Text:', text); // Handle the search text here
+const CalendarStack = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const Styles = createStyles(isDarkMode);
+  const handleSearchTextChange =()=>{}
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: true,
+        headerStyle: { backgroundColor: isDarkMode ? Colors.darker : Colors.lighter },
+        headerTintColor: isDarkMode ? '#fff' : '#000',
+        headerSearchBarOptions: {
+          placeholder: 'Search events...',
+          placeholderTextColor: isDarkMode ? '#aaa' : '#555',
+          textInputBackgroundColor: isDarkMode ? '#444' : '#fff',
+          onChangeText: handleSearchTextChange,
         },
-      },
-    }}
-  >
-    <Stack.Screen name="Calender" component={CalendarScreen} />
-  </Stack.Navigator>
-);
-
-
+      }}
+    >
+      <Stack.Screen name="Calender" component={CalendarScreen} headerSearch={handleSearchTextChange} />
+    </Stack.Navigator>
+  );
+};
 
 const ProfileStack = () => (
-  <Stack.Navigator screenOptions={{
-    headerShown: true,
-    headerStyle: { backgroundColor: Color.primaryColor }, // Set your desired header color here
-    headerTintColor: 'white',
-  }}>
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: true,
+      headerStyle: { backgroundColor: Color.primaryColor },
+      headerTintColor: 'white',
+    }}
+  >
     <Stack.Screen name="Profile" component={Profile} />
     <Stack.Screen name="ViewOrderStatus" component={ViewOrderStatus} />
   </Stack.Navigator>
 );
-
 
 const CustomTabBarButton = ({ children, onPress, focused }) => (
   <TouchableOpacity
@@ -126,36 +117,43 @@ const CustomTabBarButton = ({ children, onPress, focused }) => (
   </TouchableOpacity>
 );
 
-
 const AdminTabNavigation = () => {
-
   const isDarkMode = useColorScheme() === 'dark';
   const Styles = createStyles(isDarkMode);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+      setKeyboardVisible(true);
+    });
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
 
   return (
     <View style={[Styles.container, Styles.boxBackgroundStyle]}>
-
+     
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
           tabBarHideOnKeyboard: true,
           tabBarStyle: {
             position: 'relative',
-            bottom: 0,
+            bottom: isKeyboardVisible ? -90 : 0, // Dynamically hide the tab bar
             left: 20,
             right: 20,
             elevation: 3,
             backgroundColor: isDarkMode ? Colors.darker : '#F5F5F5',
-            shadowOpacity: 3,
-            shadowRadius: 30,
-            shadowColor: 'red',
-            screenOptions: {
-              headerShown: true
-            },
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            // backgroundColor:  isDarkMode ? Colors.darker : Color.white,
-            height: 90,
+            height: isKeyboardVisible ? 0 : 90, // Set height to 0 when the keyboard is visible
             ...styles.shadow,
           },
           tabBarIconStyle: {
@@ -169,10 +167,13 @@ const AdminTabNavigation = () => {
           component={DashboardStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <Ionicons name="home-outline" size={30} color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground} />
+              <Ionicons
+                name="home-outline"
+                size={30}
+                color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground}
+              />
             ),
-            headerShown: false
-
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -180,55 +181,51 @@ const AdminTabNavigation = () => {
           component={ListStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome name="list" size={30} color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground} />
+              <FontAwesome
+                name="list"
+                size={30}
+                color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground}
+              />
             ),
-            headerShown: false
+            headerShown: false,
           }}
-
         />
-        {/* <Tab.Screen
-          name="Leads"
-          component={AddLeadStack}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <FontAwesome name="plus" size={26} color={focused ? '#fff' : '#fff'} />
-            ),
-            tabBarButton: (props) => <CustomTabBarButton {...props} focused={props.accessibilityState.selected} />,
-          }}
-        /> */}
         <Tab.Screen
           name="Calender"
           component={CalendarStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome name="calendar" size={30} color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground} />
+              <FontAwesome
+                name="calendar"
+                size={30}
+                color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground}
+              />
             ),
-            headerShown: false
+            headerShown: false,
           }}
-         
         />
         <Tab.Screen
           name="Profile"
           component={ProfileStack}
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome name="user-o" size={30} color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground} />
+              <FontAwesome
+                name="user-o"
+                size={30}
+                color={focused ? Color.primaryColor : isDarkMode ? Color.lightBackground : Color.darkBackground}
+              />
             ),
-            headerShown: false
+            headerShown: false,
           }}
-
         />
       </Tab.Navigator>
     </View>
   );
 };
 
-
-
 export default AdminTabNavigation;
 
 const styles = StyleSheet.create({
-
   shadow: {
     shadowColor: Color.primaryColor,
     shadowOffset: {

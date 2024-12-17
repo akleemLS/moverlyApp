@@ -20,8 +20,6 @@ const createStyles = (isDarkMode) => {
         container: {
             backgroundColor: isDarkMode ? Colors.darker : '#F5F5F5',
             flex: 1,
-            // marginBottom:-10
-        
         },
         backgroundColor: {
             backgroundColor: isDarkMode ? Colors.darker : Color.lightBackground,

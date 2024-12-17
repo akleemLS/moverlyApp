@@ -50,5 +50,16 @@
   "Select Language":"Select Language",
   "Price":"Price",
   "Active":"Active",
-  "Save":"Save"
+  "Save":"Save",
+  "Leads":"Leads",
+  "Estimates":"Estimates",
+  "Orders":"Orders",
+  "Services":"Services",
+  "Products":"Products",
+  "Moving Service":"Moving Services",
+  "Moving Material":"Moving Materail",
+  "Customer":"Customers",
+  "Enquiries":"Enquiries",
+  "For sale":"For Sale",
+  "Ordering":"Ordering"
 }
