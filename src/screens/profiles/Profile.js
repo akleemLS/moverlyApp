@@ -132,10 +132,17 @@ const Profile = ({ navigation }) => {
   );
 
   return (
-    <CustomSafeAreaView
-    // backgroundColor="#FF5733" 
+    <View style={Styles.container}>
+      <StatusBar
+        barStyle={'light-content'} // Adjust barStyle based on theme
+        backgroundColor={Color.primaryColor} // Match the header and StatusBar color
+        animated={true}
+      />
+
+      {/* <CustomSafeAreaView
+        backgroundColor={Color.primaryColor}
       // statusBarStyle="light-content"
-    >
+      > */}
       <ScrollView
         style={[Styles.container, styles.container]}
         contentContainerStyle={{ paddingBottom: 20 }}
@@ -236,7 +243,10 @@ const Profile = ({ navigation }) => {
       >
         {renderPasswordModal()}
       </Modalize>
-    </CustomSafeAreaView>
+      {/* </CustomSafeAreaView> */}
+
+    </View>
+
 
 
   );

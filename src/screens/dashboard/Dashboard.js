@@ -24,8 +24,8 @@ import { useTranslation } from 'react-i18next';
 import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 
 
-const { width, height } = Dimensions.get('window'); 
-const scale = width / 370; 
+const { width, height } = Dimensions.get('window');
+const scale = width / 390;
 
 // Responsive size function
 const responsiveSize = (size) => PixelRatio.roundToNearestPixel(size * scale);
@@ -73,73 +73,73 @@ const Dashboard = () => {
 
   return (
     <CustomSafeAreaView>
-   <View style={Styles.container}>
-      {/* Scrollable Content */}
-      <ScrollView contentContainerStyle={{ paddingBottom: height * 0.05 }}>
-        {/* Box Section */}
-        <CustomeText title={t('heading.Dashboard')} style={[styles.title,styles.heading]} />
-        <View style={styles.boxView}>
-          {boxArr.map((item, index) => (
-            <View key={index} style={styles.box}>
-              <View style={styles.iconContainer}>
-                <FontAwesome name="user-o" size={height * 0.06} color={Color.white} />
-              </View>
-              <View style={styles.textContainer}>
-                <CustomeText
-                  title={item.number}
-                  style={styles.numberText}
-                />
-                <CustomeText
-                  title={t(item.name)}
-                  numberOfLines={1}
-                  style={styles.nameText}
-                />
-              </View>
-            </View>
-          ))}
-        </View>
-
-        {/* Statistics Section */}
-        <View style={[styles.chartSection]}>
-          <View style={styles.header}>
-            <CustomeText title={t('heading.Statistic')} style={styles.title} />
-          </View>
-          <View style={styles.chartContainer}>
-            <LineChartComponent data={graphData.chartData} labels={graphData.chartLabels} />
-          </View>
-        </View>
-
-     
-        {/* Service Boxes */}
-        <View style={styles.serviceContainer}>
-          <View style={styles.boxView1}>
-            {serviceData.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => handleServiceBoxClick(item)}
-                style={styles.serviceBox}>
-                <View style={styles.imageContainer}>
-                  <Image
-                    source={item.image}
-                    style={styles.image}
-                    resizeMode={'contain'}
+      <View style={Styles.container}>
+        {/* Scrollable Content */}
+        <ScrollView contentContainerStyle={{ paddingBottom: height * 0.05 }} showsVerticalScrollIndicator={false}>
+          {/* Box Section */}
+          <CustomeText title={t('heading.Dashboard')} style={[styles.title, styles.heading]} />
+          <View style={styles.boxView}>
+            {boxArr.map((item, index) => (
+              <View key={index} style={styles.box}>
+                <View style={styles.iconContainer}>
+                  <FontAwesome name="user-o" size={height * 0.06} color={Color.white} />
+                </View>
+                <View style={styles.textContainer}>
+                  <CustomeText
+                    title={item.number}
+                    style={styles.numberText}
+                  />
+                  <CustomeText
+                    title={t(item.name)}
+                    numberOfLines={1}
+                    style={styles.nameText}
                   />
                 </View>
-                <CustomeText
-                  numberOfLines={1}
-                  title={t(item.name)}
-                  style={styles.serviceName}
-                />
-              </TouchableOpacity>
+              </View>
             ))}
           </View>
-        </View>
+
+          {/* Statistics Section */}
+          <View style={[styles.chartSection]}>
+            <View style={styles.header}>
+              <CustomeText title={t('heading.Statistic')} style={styles.title} />
+            </View>
+            <View style={styles.chartContainer}>
+              <LineChartComponent data={graphData.chartData} labels={graphData.chartLabels} />
+            </View>
+          </View>
 
 
-      </ScrollView>
-    </View>
+          {/* Service Boxes */}
+          <View style={styles.serviceContainer}>
+            <View style={styles.boxView1}>
+              {serviceData.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => handleServiceBoxClick(item)}
+                  style={styles.serviceBox}>
+                  <View style={styles.imageContainer}>
+                    <Image
+                      source={item.image}
+                      style={styles.image}
+                      resizeMode={'contain'}
+                    />
+                  </View>
+                  <CustomeText
+                    numberOfLines={1}
+                    title={t(item.name)}
+                    style={styles.serviceName}
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+
+
+        </ScrollView>
+      </View>
     </CustomSafeAreaView>
- 
+
   );
 };
 
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
   },
-  heading:{paddingLeft:20,padding:10,},
+  heading: { paddingLeft: 20, padding: 10, },
   box: {
     backgroundColor: Color.primaryColor,
     flexDirection: 'row',
@@ -190,25 +190,25 @@ const styles = StyleSheet.create({
   },
   serviceContainer: {
     marginTop: height * 0.02,
-    justifyContent:'center',
-    paddingLeft:20
+    justifyContent: 'center',
+    paddingLeft: 20
   },
 
   boxView1: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start', 
-    alignItems: 'center',       
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     // paddingHorizontal: '5%',  
 
   },
   serviceBox: {
     backgroundColor: Color.white,
-    height: responsiveSize(100),  
-    width: '29%',                 
-    marginBottom: responsiveSize(15), 
-    marginRight: '3.5%',          
-    borderRadius: responsiveSize(8), 
+    height: responsiveSize(100),
+    width: '29%',
+    marginBottom: responsiveSize(15),
+    marginRight: '3.5%',
+    borderRadius: responsiveSize(8),
     alignItems: 'center',
     justifyContent: 'center',
     elevation: .5,
@@ -221,11 +221,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: '90%',             
+    width: '90%',
     height: '90%',
   },
   serviceName: {
-    fontSize: responsiveSize(12), 
+    fontSize: responsiveSize(12),
     color: Color.textColor,
     textAlign: 'center',
   },

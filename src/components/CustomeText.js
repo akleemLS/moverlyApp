@@ -25,17 +25,9 @@ const CustomeText = ({ title, style, numberOfLines, allowFontScaling = true }) =
   );
 };
 
-CustomeText.propTypes = {
-  title: PropTypes.string.isRequired,
-  style: PropTypes.object,
-  numberOfLines: PropTypes.number,
-  allowFontScaling: PropTypes.bool,
-};
 
-CustomeText.defaultProps = {
-  style: {},
-  numberOfLines: 1, // Default to single line
-};
+
+
 
 export default CustomeText;
 

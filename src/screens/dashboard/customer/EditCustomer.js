@@ -21,7 +21,7 @@ const EditCustomer = () => {
     return (
         <CustomSafeAreaView>
             <View style={[Styles.container]}>
-                <CustomHeader showSearch={false} title='Edit Customer' />
+                <CustomHeader showSearch={false} title={t('heading.Edit_Customer')} />
                 <ScrollView>
                     <View style={styles.allIputsView}>
                         <Input placeholder={t('Enter Name Here!')} title={'Name'} />

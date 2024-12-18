@@ -34,10 +34,11 @@
     "Complete_Order": "Abgeschlossene Bestellungen",
     "Upload": "Hochladen",
     "Log_Out": "Abmelden",
-    "Save":"Save"
+    "Save": "Save"
   },
-  "validation":{
-    "no_data_available":"Daten sind nicht verfügbar"
+  "validation": {
+    "no_data_available": "Daten sind nicht verfügbar",
+    "no_events_for_this_date": "Für dieses Datum sind keine Veranstaltungen verfügbar"
   },
   "Forget_Password": "Passwort vergessen",
   "customText": "Dies ist benutzerdefinierter Text",
@@ -45,19 +46,21 @@
   "Mode": "Modus",
   "Change Password": "Passwort ändern",
   "Language": "Sprache",
-  "Select Language":"Sprache auswählen",
-  "Price":"Preis",
-  "Active":"Aktiv",
-  "Save":"Speichern Sie",
-  "Leads":"Leads",
-  "Estimates":"Kostenvoranschläge",
-  "Orders":"Aufträge",
-  "Services":"Dienstleistungen",
-  "Products":"Produkte",
-  "Moving Service":"Umzugsdienstleistungen",
-  "Moving Material":"Umzugsmaterial",
-  "Customer":"Kunden",
-  "Enquiries":"Anfragen",
-  "For sale":"Zu verkaufen",
-  "Ordering":"Bestellung"
+  "Select Language": "Sprache auswählen",
+  "Price": "Preis",
+  "Active": "Aktiv",
+  "Save": "Speichern Sie",
+  "Leads": "Leads",
+  "Estimates": "Kostenvoranschläge",
+  "Orders": "Aufträge",
+  "Services": "Dienstleistungen",
+  "Products": "Produkte",
+  "Moving Service": "Umzugsdienstleistungen",
+  "Moving Material": "Umzugsmaterial",
+  "Customer": "Kunden",
+  "Enquiries": "Anfragen",
+  "For sale": "Zu verkaufen",
+  "Ordering": "Bestellung",
+  "Calender": "Kalender",
+  "Profile": "Profil"
 }

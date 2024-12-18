@@ -135,7 +135,7 @@ const CalendarScreen = () => {
                 <Text>{item.name || 'Unnamed Event'}</Text>
               </View>
             )}
-            ListEmptyComponent={<Text style={styles.noEvents}>No events for this date.</Text>}
+            ListEmptyComponent={<Text style={styles.noEvents}>{t('validation.no_events_for_this_date')}</Text>}
           />
         </View>
 

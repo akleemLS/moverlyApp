@@ -39,7 +39,8 @@
     "Save":"Save"
   },
   "validation":{
-    "no_data_available":"Data is not available"
+    "no_data_available":"Data is not available",
+    "no_events_for_this_date":"No Events Available For This Date"
   },
   "Forget_Password": "Forget Password",
   "customText": "This is custom text",
@@ -61,5 +62,8 @@
   "Customer":"Customers",
   "Enquiries":"Enquiries",
   "For sale":"For Sale",
-  "Ordering":"Ordering"
+  "Ordering":"Ordering",
+  "Calendar":"Calendar",
+  "Profile":"Profile"
+
 }

@@ -1,16 +1,18 @@
-// src/components/CustomSafeAreaView.js
 import React from 'react';
-
-import { StatusBar, StyleSheet, useColorScheme ,SafeAreaView} from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme, SafeAreaView } from 'react-native';
 
 const CustomSafeAreaView = ({ children, backgroundColor, statusBarStyle }) => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const dynamicBackgroundColor = backgroundColor || (isDarkMode ? '#121212' : '#FFFFFF');
+  const dynamicStatusBarStyle = statusBarStyle || (isDarkMode ? 'light-content' : 'dark-content');
+
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: backgroundColor || (isDarkMode ? '#121212' : '#FFFFFF') }]}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: dynamicBackgroundColor }]}>
       <StatusBar
-        barStyle={statusBarStyle || (isDarkMode ? 'light-content' : 'dark-content')}
-        backgroundColor={backgroundColor || (isDarkMode ? '#121212' : '#FFFFFF')}
+        barStyle={dynamicStatusBarStyle}
+        backgroundColor={dynamicBackgroundColor}
+        animated={true} 
       />
       {children}
     </SafeAreaView>

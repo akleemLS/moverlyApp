@@ -27,6 +27,7 @@ import EditMovingMaterail from '../screens/dashboard/movingMaterailSection/EditM
 import Customer from '../screens/dashboard/customer/Customer';
 import EditCustomer from '../screens/dashboard/customer/EditCustomer';
 import ViewOrderStatus from '../screens/employee/dashboard/ViewOrderStatus';
+import { t } from 'i18next';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -74,7 +75,7 @@ const CalendarStack = () => {
         },
       }}
     >
-      <Stack.Screen name="Calender" component={CalendarScreen} headerSearch={handleSearchTextChange} />
+      <Stack.Screen name={t("Calender")} component={CalendarScreen} headerSearch={handleSearchTextChange} />
     </Stack.Navigator>
   );
 };
@@ -87,7 +88,7 @@ const ProfileStack = () => (
       headerTintColor: 'white',
     }}
   >
-    <Stack.Screen name="Profile" component={Profile} />
+    <Stack.Screen name={t("Profile")} component={Profile} />
     <Stack.Screen name="ViewOrderStatus" component={ViewOrderStatus} />
   </Stack.Navigator>
 );
@@ -138,8 +139,7 @@ const AdminTabNavigation = () => {
 
 
   return (
-    <View style={[Styles.container, Styles.boxBackgroundStyle]}>
-     
+    <View style={[{flex:1},Styles.container]}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
@@ -150,20 +150,21 @@ const AdminTabNavigation = () => {
             left: 20,
             right: 20,
             elevation: 3,
-            backgroundColor: isDarkMode ? Colors.darker : '#F5F5F5',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            // backgroundColor: isDarkMode ? Colors.darker : '#F5F5F5',
+            backgroundColor: isDarkMode ? 'black' : 'white',
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
             height: isKeyboardVisible ? 0 : 90, // Set height to 0 when the keyboard is visible
             ...styles.shadow,
           },
           tabBarIconStyle: {
             justifyContent: 'center',
-            height: 60,
+            height: 70,
           },
         })}
       >
         <Tab.Screen
-          name="Dashboard"
+          name={t("Dashboard")}
           component={DashboardStack}
           options={{
             tabBarIcon: ({ focused }) => (
@@ -191,7 +192,7 @@ const AdminTabNavigation = () => {
           }}
         />
         <Tab.Screen
-          name="Calender"
+          name={t("Calender")}
           component={CalendarStack}
           options={{
             tabBarIcon: ({ focused }) => (
@@ -205,7 +206,7 @@ const AdminTabNavigation = () => {
           }}
         />
         <Tab.Screen
-          name="Profile"
+          name={t("Profile")}
           component={ProfileStack}
           options={{
             tabBarIcon: ({ focused }) => (
